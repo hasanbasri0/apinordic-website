@@ -53,3 +53,7 @@ body{background:#fbf7ee}
 .topbar{position:relative!important;height:38px}
 .hero{padding-top:50px}
 @media(max-width:900px){.topbar{height:32px}.nav{top:0!important}.hero{padding-top:40px}}
+
+/* Top strip removed completely */
+.topbar{display:none!important;height:0!important;margin:0!important;padding:0!important}
+.nav{top:0!important;margin-top:0!important}
