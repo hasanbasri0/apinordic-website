@@ -40,3 +40,10 @@ body{background:#fbf7ee}
 .page-hero{padding-top:100px}
 #tarina{padding-top:125px}
 @media(max-width:900px){.hero{padding-top:72px}.page-hero{padding-top:80px}#tarina{padding-top:90px}}
+
+/* Final nav behavior: header must not float over page sections while scrolling */
+.nav{position:relative!important;top:auto!important}
+.topbar{position:relative!important;top:auto!important}
+.hero{padding-top:88px}
+.story,.section,.partnership,.quote,.contact{scroll-margin-top:0}
+@media(max-width:900px){.nav{position:relative!important;top:auto!important}.hero{padding-top:72px}}
