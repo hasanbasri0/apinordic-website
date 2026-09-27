@@ -31,3 +31,12 @@ body{background:#fbf7ee}
 .story,.section,.partnership,.quote,.contact{scroll-margin-top:126px}
 #tarina{padding-top:150px}
 @media(max-width:900px){.story,.section,.partnership,.quote,.contact{scroll-margin-top:104px}#tarina{padding-top:105px}}
+
+/* Header is now in normal document flow: no transparent/empty overlap above sections */
+.nav{position:sticky;top:0}
+.topbar{position:relative;z-index:21}
+.hero{padding-top:88px}
+.subpage{padding-top:0!important}
+.page-hero{padding-top:100px}
+#tarina{padding-top:125px}
+@media(max-width:900px){.hero{padding-top:72px}.page-hero{padding-top:80px}#tarina{padding-top:90px}}
