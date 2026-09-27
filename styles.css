@@ -26,3 +26,8 @@ body{background:#fbf7ee}
 @media(max-width:900px){.topbar{height:32px;grid-template-columns:1fr auto}.top-note{display:none}.top-contact{justify-self:end}.nav{top:32px;height:72px}.nav nav{top:72px}.search-panel{top:72px}.hero{padding-top:145px;background:linear-gradient(145deg,#fbf6eb,#eee1ca)}.hero h1{font-size:52px}.honey-orb{width:220px}.top-social span:nth-child(2){display:none}}
 
 .top-social a{color:inherit;text-decoration:none}.top-social a:hover{color:#d9b875}
+
+/* Fix fixed-header overlap on in-page anchor navigation */
+.story,.section,.partnership,.quote,.contact{scroll-margin-top:126px}
+#tarina{padding-top:150px}
+@media(max-width:900px){.story,.section,.partnership,.quote,.contact{scroll-margin-top:104px}#tarina{padding-top:105px}}
