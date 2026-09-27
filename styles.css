@@ -47,3 +47,9 @@ body{background:#fbf7ee}
 .hero{padding-top:88px}
 .story,.section,.partnership,.quote,.contact{scroll-margin-top:0}
 @media(max-width:900px){.nav{position:relative!important;top:auto!important}.hero{padding-top:72px}}
+
+/* Remove the legacy 38px top offset that remains after the green topbar scrolls away */
+.nav{position:sticky!important;top:0!important;margin-top:0!important}
+.topbar{position:relative!important;height:38px}
+.hero{padding-top:50px}
+@media(max-width:900px){.topbar{height:32px}.nav{top:0!important}.hero{padding-top:40px}}
