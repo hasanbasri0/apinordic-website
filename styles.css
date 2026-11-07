@@ -1,6 +1,7 @@
 /* APINORDIC – consolidated stylesheet (light Nordic theme) */
 :root{--green:#234b40;--green2:#173b32;--cream:#fbf7ee;--gold:#b88945;--ink:#17372f;--white:#fffdf8;--sand:#efe5d2}
 *{box-sizing:border-box}
+img{max-width:100%;height:auto}
 html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Manrope,sans-serif}
 
@@ -145,3 +146,12 @@ footer>div{display:flex;gap:22px}
   .story-text{grid-template-columns:1fr;padding:60px 26px 80px;gap:45px}
   .story-text blockquote{padding-left:22px}
 }
+
+/* ---------- Recognition (certificate) on Our story page ---------- */
+.recognition{background:#f2e8d6;padding:100px max(7vw,32px);display:grid;grid-template-columns:minmax(260px,.7fr) minmax(0,1fr);gap:7vw;align-items:center}
+.recognition-photo{margin:0;justify-self:center;max-width:430px;width:100%}
+.recognition-photo img{display:block;width:100%;height:auto;box-shadow:0 24px 60px rgba(60,45,20,.22);border:1px solid rgba(184,137,69,.4)}
+.recognition-copy{max-width:640px}
+.recognition-copy h2{font:500 clamp(36px,4.4vw,60px)/1.05 "Cormorant Garamond",serif;color:var(--green2);margin:0 0 26px}
+.recognition-copy p:not(.eyebrow){font-size:17px;line-height:1.9;color:#42534d;margin:0 0 18px}
+@media(max-width:850px){.recognition{grid-template-columns:1fr;padding:70px 26px;gap:40px}}
