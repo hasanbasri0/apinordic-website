@@ -78,4 +78,17 @@
   $$('.nav nav > a').forEach(a => {
     if (a.getAttribute('href') === current) a.classList.add('active');
   });
+
+  // Cart count badge (cart is stored by shop.js in localStorage)
+  function updateCartCount() {
+    let n = 0;
+    try {
+      const c = JSON.parse(localStorage.getItem('apinordic-cart') || '{}') || {};
+      n = Object.values(c).reduce((a, b) => a + (Number(b) > 0 ? Number(b) : 0), 0);
+    } catch (e) {}
+    $$('.cart-count').forEach(el => { el.textContent = n; el.hidden = n < 1; });
+  }
+  updateCartCount();
+  window.addEventListener('storage', updateCartCount);
+  window.addEventListener('apinordic-cart', updateCartCount);
 })();
