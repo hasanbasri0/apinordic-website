@@ -8,10 +8,10 @@
     '500': { fi: 'Hunaja 500 g (lasipurkki)', en: 'Honey 500 g (glass jar)' }
   };
   const T = {
-    fi: { empty: 'Koriisi ei ole vielä tuotteita.', remove: 'Poista', need: 'Lisää vähintään yksi tuote koriin.', fill: 'Täytä nimi, sähköposti ja osoite.',
+    fi: { added: 'Lisätty koriin', view: 'Näytä kori', btnAdded: 'Lisätty ✓', empty: 'Koriisi ei ole vielä tuotteita.', remove: 'Poista', need: 'Lisää vähintään yksi tuote koriin.', fill: 'Täytä nimi, sähköposti ja osoite.',
           sent: 'Sähköpostiohjelmasi avautuu. Jos mitään ei tapahdu, lähetä tilaus osoitteeseen ' + EMAIL + '.', subject: 'Tilauspyyntö – APINORDIC',
           hello: 'Hei APINORDIC,', want: 'haluaisin tilata seuraavat tuotteet:', total: 'Yhteensä', det: 'Yhteystiedot', name: 'Nimi', email: 'Sähköposti', phone: 'Puhelin', addr: 'Toimitusosoite / nouto', msg: 'Viesti', thanks: 'Kiitos!' },
-    en: { empty: 'Your basket is empty.', remove: 'Remove', need: 'Please add at least one product.', fill: 'Please fill in name, email and address.',
+    en: { added: 'Added to basket', view: 'View basket', btnAdded: 'Added ✓', empty: 'Your basket is empty.', remove: 'Remove', need: 'Please add at least one product.', fill: 'Please fill in name, email and address.',
           sent: 'Your email app should open. If nothing happens, send the order to ' + EMAIL + '.', subject: 'Order request – APINORDIC',
           hello: 'Hello APINORDIC,', want: 'I would like to order the following:', total: 'Total', det: 'My details', name: 'Name', email: 'Email', phone: 'Phone', addr: 'Delivery address / pick-up', msg: 'Message', thanks: 'Thank you!' }
   };
@@ -23,7 +23,7 @@
   let cart = {};
   try { cart = JSON.parse(localStorage.getItem('apinordic-cart') || '{}') || {}; } catch (e) { cart = {}; }
   Object.keys(cart).forEach(k => { if (!(k in PRICES) || !(cart[k] > 0)) delete cart[k]; });
-  const save = () => { try { localStorage.setItem('apinordic-cart', JSON.stringify(cart)); } catch (e) {} };
+  const save = () => { try { localStorage.setItem('apinordic-cart', JSON.stringify(cart)); } catch (e) {} window.dispatchEvent(new Event('apinordic-cart')); };
 
   function render() {
     const L = lang(), box = $('#cart-items');
@@ -49,6 +49,24 @@
     $('#cart-total').textContent = money(total);
   }
 
+  // feedback after adding: button label + small toast
+  let toast, toastTimer;
+  function feedback(btn) {
+    const L = lang();
+    const old = btn.dataset[L];
+    btn.textContent = T[L].btnAdded; btn.disabled = true;
+    setTimeout(() => { btn.textContent = btn.dataset[lang()]; btn.disabled = false; }, 1400);
+    if (!toast) {
+      toast = document.createElement('div'); toast.className = 'toast'; toast.setAttribute('role', 'status');
+      document.body.append(toast);
+    }
+    toast.textContent = '';
+    const msg = document.createElement('span'); msg.textContent = T[L].added;
+    const a = document.createElement('a'); a.href = '#kori'; a.textContent = T[L].view;
+    toast.append(msg, a); toast.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+  }
+
   // product cards
   $$('.shop-card').forEach(card => {
     const input = $('[data-qty-input]', card);
@@ -61,6 +79,7 @@
       cart[card.dataset.id] = Math.min(50, (cart[card.dataset.id] || 0) + v);
       save(); render();
       const status = $('#order-status'); if (status) status.textContent = '';
+      feedback($('[data-add]', card));
     });
   });
 
