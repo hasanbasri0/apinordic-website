@@ -155,3 +155,16 @@ footer>div{display:flex;gap:22px}
 .recognition-copy h2{font:500 clamp(36px,4.4vw,60px)/1.05 "Cormorant Garamond",serif;color:var(--green2);margin:0 0 26px}
 .recognition-copy p:not(.eyebrow){font-size:17px;line-height:1.9;color:#42534d;margin:0 0 18px}
 @media(max-width:850px){.recognition{grid-template-columns:1fr;padding:70px 26px;gap:40px}}
+
+/* ---------- Products on Our honey page ---------- */
+.products{background:#f8f1e5;padding:100px 8vw 110px}
+.products h2{font:500 clamp(36px,4.4vw,60px)/1.05 "Cormorant Garamond",serif;color:var(--green2);margin:0 0 50px;max-width:760px}
+.product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;max-width:1100px}
+.product{background:var(--white);border:1px solid #d5c9b5;display:flex;flex-direction:column}
+.product figure{margin:0;aspect-ratio:4/5;overflow:hidden;background:#efe5d2}
+.product img{display:block;width:100%;height:100%;object-fit:cover}
+.product>div{padding:26px 28px 32px}
+.product-size{display:inline-block;font-size:10px;letter-spacing:.2em;color:var(--gold);border:1px solid var(--gold);padding:5px 10px;margin-bottom:14px}
+.product h3{font:600 32px "Cormorant Garamond",serif;margin:0 0 10px;color:var(--green2)}
+.product p{margin:0;line-height:1.8;font-size:15px;color:#42534d}
+@media(max-width:850px){.products{padding:70px 7vw 80px}.product-grid{grid-template-columns:1fr}}
