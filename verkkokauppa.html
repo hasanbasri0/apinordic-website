@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="APINORDIC verkkokauppa – tulossa myöhemmin.">
+<meta name="description" content="APINORDIC verkkokauppa – tilaa suomalaista hunajaa: 250 g puristuspullo ja 500 g lasipurkki.">
 <title>Verkkokauppa | APINORDIC</title>
 <link rel="icon" href="assets/apinordic-logo-new.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,12 +27,62 @@
 </nav>
 <div class="search-panel"><div><input id="site-search" type="search" placeholder="Hae sivulta…" data-placeholder-fi="Hae sivulta…" data-placeholder-en="Search this page…"><button class="search-close" aria-label="Sulje">×</button><p id="search-status"></p></div></div>
 </header>
-<main class="subpage">
-<section class="page-hero shop-page">
-<p class="eyebrow gold" data-fi="TULOSSA MYÖHEMMIN" data-en="COMING SOON">TULOSSA MYÖHEMMIN</p>
-<h1 data-fi="Verkkokauppa" data-en="Online Shop">Verkkokauppa</h1>
-<p data-fi="APINORDICin verkkokauppa rakentuu tänne myöhemmin. Tulevaisuudessa tältä sivulta löydät saatavilla olevat hunajat ja muut APINORDIC-tuotteet." data-en="The APINORDIC online shop will be built here later. In the future, this page will feature available honey and other APINORDIC products.">APINORDICin verkkokauppa rakentuu tänne myöhemmin. Tulevaisuudessa tältä sivulta löydät saatavilla olevat hunajat ja muut APINORDIC-tuotteet.</p>
-<span class="coming" data-fi="Kauppa tulossa" data-en="Shop coming soon">Kauppa tulossa</span>
+<main class="subpage shop-main">
+<section class="shop-top">
+<p class="eyebrow" data-fi="VERKKOKAUPPA" data-en="ONLINE SHOP">VERKKOKAUPPA</p>
+<h1 data-fi="Hunajaa suoraan meiltä." data-en="Honey straight from us.">Hunajaa suoraan meiltä.</h1>
+<p data-fi="Valitse hunaja koriin ja lähetä tilauspyyntö. Vastaamme sähköpostitse ja sovimme yhdessä toimituksesta ja maksusta." data-en="Choose your honey, add it to the basket and send an order request. We reply by email and agree on delivery and payment together.">Valitse hunaja koriin ja lähetä tilauspyyntö. Vastaamme sähköpostitse ja sovimme yhdessä toimituksesta ja maksusta.</p>
+</section>
+<section class="shop-layout">
+<div class="shop-products">
+<article class="product shop-card" data-id="250">
+<figure><img src="assets/honey-250g.jpg" alt="APINORDIC-hunajaa 250 gramman puristuspulloissa" loading="lazy"></figure>
+<div>
+<span class="product-size">250 g</span>
+<h3 data-fi="Hunaja, puristuspullo" data-en="Honey, squeeze bottle">Hunaja, puristuspullo</h3>
+<p data-fi="Kätevä pullo arkeen: hunaja annostellaan helposti teehen, puuroon tai leivälle." data-en="A handy bottle for everyday use: easy to drizzle on tea, porridge or bread.">Kätevä pullo arkeen: hunaja annostellaan helposti teehen, puuroon tai leivälle.</p>
+<p class="price"><strong data-price></strong> <small data-fi="/ kpl" data-en="/ pc">/ kpl</small></p>
+<div class="buy-row">
+<div class="qty" role="group" aria-label="Määrä / Quantity"><button type="button" data-qty="-1" aria-label="-">−</button><input type="number" min="1" max="20" value="1" aria-label="Määrä / Quantity" data-qty-input><button type="button" data-qty="1" aria-label="+">+</button></div>
+<button type="button" class="button add-btn" data-add data-fi="Lisää koriin" data-en="Add to basket">Lisää koriin</button>
+</div>
+</div>
+</article>
+<article class="product shop-card" data-id="500">
+<figure><img src="assets/honey-500g.jpg" alt="APINORDIC-hunajaa 500 gramman lasipurkissa" loading="lazy"></figure>
+<div>
+<span class="product-size">500 g</span>
+<h3 data-fi="Hunaja, lasipurkki" data-en="Honey, glass jar">Hunaja, lasipurkki</h3>
+<p data-fi="Perheen koko: lasipurkki, johon hunaja pakataan huolella. Sopii myös lahjaksi." data-en="The family size: a glass jar, carefully packed. Also lovely as a gift.">Perheen koko: lasipurkki, johon hunaja pakataan huolella. Sopii myös lahjaksi.</p>
+<p class="price"><strong data-price></strong> <small data-fi="/ kpl" data-en="/ pc">/ kpl</small></p>
+<div class="buy-row">
+<div class="qty" role="group" aria-label="Määrä / Quantity"><button type="button" data-qty="-1" aria-label="-">−</button><input type="number" min="1" max="20" value="1" aria-label="Määrä / Quantity" data-qty-input><button type="button" data-qty="1" aria-label="+">+</button></div>
+<button type="button" class="button add-btn" data-add data-fi="Lisää koriin" data-en="Add to basket">Lisää koriin</button>
+</div>
+</div>
+</article>
+</div>
+<aside class="cart" aria-labelledby="cart-title">
+<h2 id="cart-title" data-fi="Ostoskori" data-en="Basket">Ostoskori</h2>
+<div id="cart-items" aria-live="polite"></div>
+<div class="cart-total"><span data-fi="Yhteensä" data-en="Total">Yhteensä</span><strong id="cart-total">0,00 €</strong></div>
+<p class="cart-note" data-fi="Toimituskulut ja toimitustapa sovitaan tilauksen yhteydessä." data-en="Delivery costs and method are agreed when we reply to your order.">Toimituskulut ja toimitustapa sovitaan tilauksen yhteydessä.</p>
+<form id="order-form" novalidate>
+<h3 data-fi="Yhteystiedot" data-en="Your details">Yhteystiedot</h3>
+<label><span data-fi="Nimi" data-en="Name">Nimi</span><input name="name" type="text" autocomplete="name" required></label>
+<label><span data-fi="Sähköposti" data-en="Email">Sähköposti</span><input name="email" type="email" autocomplete="email" required></label>
+<label><span data-fi="Puhelin (valinnainen)" data-en="Phone (optional)">Puhelin (valinnainen)</span><input name="phone" type="tel" autocomplete="tel"></label>
+<label><span data-fi="Toimitusosoite tai nouto" data-en="Delivery address or pick-up">Toimitusosoite tai nouto</span><textarea name="address" rows="2" required></textarea></label>
+<label><span data-fi="Viesti (valinnainen)" data-en="Message (optional)">Viesti (valinnainen)</span><textarea name="message" rows="2"></textarea></label>
+<button type="submit" class="button" id="send-btn" data-fi="Lähetä tilauspyyntö" data-en="Send order request">Lähetä tilauspyyntö</button>
+<p id="order-status" class="order-status" aria-live="polite"></p>
+</form>
+</aside>
+</section>
+<section class="shop-info">
+<div><h3 data-fi="Tilaaminen" data-en="How ordering works">Tilaaminen</h3><p data-fi="Tilauspyyntö avautuu sähköpostiohjelmaasi valmiiksi täytettynä. Vahvistamme tilauksen ja kerromme maksuohjeet." data-en="The order request opens in your email app, pre-filled. We confirm the order and send payment instructions.">Tilauspyyntö avautuu sähköpostiohjelmaasi valmiiksi täytettynä. Vahvistamme tilauksen ja kerromme maksuohjeet.</p></div>
+<div><h3 data-fi="Pakkaukset" data-en="Packaging">Pakkaukset</h3><p data-fi="Hunaja on pakattu 250 g:n puristuspulloon tai 500 g:n lasipurkkiin." data-en="Our honey comes in a 250 g squeeze bottle or a 500 g glass jar.">Hunaja on pakattu 250 g:n puristuspulloon tai 500 g:n lasipurkkiin.</p></div>
+<div><h3 data-fi="Kysyttävää?" data-en="Questions?">Kysyttävää?</h3><p><a href="mailto:info@apinordic.com">info@apinordic.com</a></p></div>
 </section>
 </main>
 <footer>
@@ -40,5 +90,6 @@
 <div class="social-links"><a href="https://www.instagram.com/apinordic/" target="_blank" rel="noopener noreferrer" aria-label="APINORDIC Instagram">Instagram</a></div>
 </footer>
 <script src="script.js"></script>
+<script src="shop.js"></script>
 </body>
 </html>
