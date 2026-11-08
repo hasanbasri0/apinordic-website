@@ -173,8 +173,8 @@ footer>div{display:flex;gap:22px}
 .shop-top{padding:90px max(7vw,32px) 50px;max-width:1300px;margin:0 auto}
 .shop-top h1{font:500 clamp(46px,6vw,78px)/1 "Cormorant Garamond",serif;color:var(--green2);margin:0 0 22px}
 .shop-top>p:not(.eyebrow){font-size:17px;line-height:1.9;max-width:720px;color:#42534d;margin:0}
-.shop-layout{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:40px;align-items:start;max-width:1300px;margin:0 auto;padding:0 max(7vw,32px) 80px}
-.shop-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.shop-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:start;max-width:1300px;margin:0 auto;padding:0 max(7vw,32px) 80px}
+.shop-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .shop-card .price{margin:16px 0 14px;font-size:15px}
 .shop-card .price strong{font:600 28px "Cormorant Garamond",serif;color:var(--green2)}
 .buy-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
@@ -184,7 +184,7 @@ footer>div{display:flex;gap:22px}
 .qty input{width:44px;border:0;border-left:1px solid #e3d9c6;border-right:1px solid #e3d9c6;text-align:center;font:600 14px Manrope;color:var(--ink);background:transparent;-moz-appearance:textfield}
 .qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .add-btn{cursor:pointer;font-family:Manrope,sans-serif}
-.cart{position:sticky;top:104px;background:var(--white);border:1px solid #d5c9b5;padding:28px}
+.cart{width:100%;max-width:760px;margin-inline:auto;background:var(--white);border:1px solid #d5c9b5;padding:28px}
 .cart h2{font:600 30px "Cormorant Garamond",serif;margin:0 0 16px;color:var(--green2)}
 .cart h3{font:600 22px "Cormorant Garamond",serif;margin:26px 0 10px;color:var(--green2)}
 .cart-empty{margin:0 0 10px;color:#7d776c;font-size:14px}
@@ -207,7 +207,8 @@ footer>div{display:flex;gap:22px}
 .shop-info p{margin:0;font-size:15px;line-height:1.8;color:#42534d}
 .shop-info a{color:var(--green)}
 @media(max-width:1000px){.shop-layout{grid-template-columns:1fr}.cart{position:static}}
-@media(max-width:700px){.shop-products{grid-template-columns:1fr}.shop-info{grid-template-columns:1fr}.shop-top{padding-top:60px}}
+@media(max-width:820px){.shop-products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.shop-info{grid-template-columns:1fr}.shop-top{padding-top:60px}}
 .shop-card>div{flex:1;display:flex;flex-direction:column}
 .shop-card .buy-row{margin-top:auto}
 .shop-card .product-size{align-self:flex-start}
@@ -223,3 +224,21 @@ footer>div{display:flex;gap:22px}
 .toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .toast a{color:#e6c88f;text-decoration:underline}
 @media(max-width:900px){.cart-mobile{display:inline-flex;margin-left:auto;margin-right:18px}.cart-desktop{display:none}}
+
+.catalog-note{grid-column:1/-1;margin:0;color:#53635a;font-size:.875rem}
+.shop-card figure{aspect-ratio:1}
+.shop-card .buy-row{gap:10px}
+.shop-card .qty button{min-height:36px}
+@media(max-width:600px){
+  .shop-layout{padding-inline:14px}
+  .shop-products{gap:14px 10px}
+  .shop-card>div{padding:14px 10px}
+  .shop-card h3{font-size:23px;overflow-wrap:anywhere}
+  .shop-card p{font-size:13px;line-height:1.55}
+  .shop-card .price strong{font-size:22px}
+  .shop-card .buy-row{align-items:stretch;flex-direction:column}
+  .shop-card .qty{justify-content:space-between}
+  .shop-card .qty input{width:34px}
+  .shop-card .add-btn{padding:12px 4px;letter-spacing:0}
+}
+@media(max-width:319px){.shop-products{grid-template-columns:1fr}}

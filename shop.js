@@ -1,11 +1,12 @@
 (() => {
   // ====== EDIT HERE: prices (EUR) – these are SAMPLE prices ======
-  const PRICES = { '250': 8.90, '500': 14.90 };
+  const PRICES = { '250': 8.90, '500': 14.90, 'duo': 29.80 };
   const EMAIL = 'info@apinordic.com';
   // ===============================================================
   const NAMES = {
     '250': { fi: 'Hunaja 250 g (puristuspullo)', en: 'Honey 250 g (squeeze bottle)' },
-    '500': { fi: 'Hunaja 500 g (lasipurkki)', en: 'Honey 500 g (glass jar)' }
+    '500': { fi: 'Hunaja 500 g (lasipurkki)', en: 'Honey 500 g (glass jar)' },
+    'duo': { fi: 'Hunajalahja (2 × 500 g)', en: 'Honey gift set (2 × 500 g)' }
   };
   const T = {
     fi: { added: 'Lisätty koriin', view: 'Näytä kori', btnAdded: 'Lisätty ✓', empty: 'Koriisi ei ole vielä tuotteita.', remove: 'Poista', need: 'Lisää vähintään yksi tuote koriin.', fill: 'Täytä nimi, sähköposti ja osoite.',
