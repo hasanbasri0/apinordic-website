@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="APINORDIC – Tilauspyyntö.">
+<title>Tilauspyyntö | APINORDIC</title>
+<link rel="icon" href="assets/apinordic-logo-new.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="nav">
+<a class="brand" href="index.html"><span class="brand-logo"><img src="assets/apinordic-logo-new.png" alt="APINORDIC logo"></span><span>APINORDIC</span></a>
+<a class="cart-link cart-mobile" href="ostoskori.html" aria-label="Ostoskori / Basket" title="Ostoskori / Basket"><svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" hidden>0</span></a>
+<button class="menu" aria-label="Avaa valikko" aria-expanded="false">☰</button>
+<nav>
+<a href="hunajamme.html" data-fi="Hunajamme" data-en="Our Honey">Hunajamme</a>
+<a href="tarinamme.html" data-fi="Tarinamme" data-en="Our Story">Tarinamme</a>
+<a href="mehilaiset-luonto.html" data-fi="Mehiläiset &amp; luonto" data-en="Bees &amp; Nature">Mehiläiset &amp; luonto</a>
+<a href="pesaosakkuus.html" data-fi="Pesäosakkuus" data-en="Hive Partnership">Pesäosakkuus</a>
+<a href="verkkokauppa.html" data-fi="Verkkokauppa" data-en="Shop">Verkkokauppa</a>
+<a href="yhteystiedot.html" data-fi="Ota yhteyttä" data-en="Contact">Ota yhteyttä</a>
+<a class="cart-link cart-desktop" href="ostoskori.html" aria-label="Ostoskori / Basket" title="Ostoskori / Basket"><svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" hidden>0</span></a>
+<button class="search-toggle" aria-label="Haku" title="Haku">⌕</button>
+<span class="lang"><button class="active" data-lang="fi">FI</button><i></i><button data-lang="en">EN</button></span>
+</nav>
+<div class="search-panel"><div><input id="site-search" type="search" placeholder="Hae sivulta…" data-placeholder-fi="Hae sivulta…" data-placeholder-en="Search this page…"><button class="search-close" aria-label="Sulje">×</button><p id="search-status"></p></div></div>
+</header>
+<main class="subpage basket-route">
+<p><a href="verkkokauppa.html" data-fi="← Jatka ostoksia" data-en="← Continue shopping">← Jatka ostoksia</a></p>
+<p><a href="ostoskori.html" data-fi="← Takaisin ostoskoriin" data-en="← Back to basket">← Takaisin ostoskoriin</a></p><p id="checkout-empty" class="basket-empty" hidden data-fi="Ostoskori on tyhjä. Lisää tuotteita verkkokaupasta." data-en="Your basket is empty. Add products from the shop.">Ostoskori on tyhjä. Lisää tuotteita verkkokaupasta.</p><section class="checkout-section" id="tilauspyynto"><h1  data-fi="Tilauspyyntö" data-en="Order request">Tilauspyyntö</h1><p  data-fi="Täytä yhteystietosi. Painike avaa sähköpostiluonnoksen, jonka voit tarkistaa ja lähettää sähköpostiohjelmastasi." data-en="Enter your details. The button opens an email draft for you to review and send in your email app.">Täytä yhteystietosi. Painike avaa sähköpostiluonnoksen, jonka voit tarkistaa ja lähettää sähköpostiohjelmastasi.</p><form id="order-form" class="checkout-grid"><div class="checkout-fields"><h3  data-fi="Yhteystiedot" data-en="Contact details">Yhteystiedot</h3><div class="field-grid"><label><span  data-fi="Etunimi *" data-en="First name *">Etunimi *</span><input name="firstName" type="text" autocomplete="given-name" required></label><label><span  data-fi="Sukunimi *" data-en="Last name *">Sukunimi *</span><input name="lastName" type="text" autocomplete="family-name" required></label><label><span  data-fi="Sähköposti *" data-en="Email *">Sähköposti *</span><input name="email" type="email" autocomplete="email" required></label><label><span  data-fi="Puhelin (valinnainen)" data-en="Phone (optional)">Puhelin (valinnainen)</span><input name="phone" type="tel" autocomplete="tel" ></label><label><span  data-fi="Yritys (valinnainen)" data-en="Company (optional)">Yritys (valinnainen)</span><input name="company" type="text" autocomplete="organization" ></label></div><label><span  data-fi="Toimitustoive" data-en="Delivery preference">Toimitustoive</span><select name="delivery"><option value="delivery" data-fi="Toimitus" data-en="Delivery">Toimitus</option><option value="pickup" data-fi="Nouto sopimuksen mukaan" data-en="Pick-up by arrangement">Nouto sopimuksen mukaan</option></select></label><div id="delivery-fields" class="field-grid"><label><span  data-fi="Katuosoite *" data-en="Street address *">Katuosoite *</span><input name="street" type="text" autocomplete="street-address" required></label><label><span  data-fi="Postinumero *" data-en="Postal code *">Postinumero *</span><input name="postal" type="text" autocomplete="postal-code" required></label><label><span  data-fi="Postitoimipaikka *" data-en="City *">Postitoimipaikka *</span><input name="city" type="text" autocomplete="address-level2" required></label></div><label><span  data-fi="Lisätiedot (valinnainen)" data-en="Additional information (optional)">Lisätiedot (valinnainen)</span><textarea name="message" rows="4"></textarea></label><p class="cart-note" data-fi="Yhteystietosi sisällytetään sähköpostiluonnokseen APINORDICille. Lomakkeen tiedot säilyvät tällä sivulla vain sen ollessa avoinna." data-en="Your contact details are included in the email draft to APINORDIC. Form details remain on this page only while it is open.">Yhteystietosi sisällytetään sähköpostiluonnokseen APINORDICille. Lomakkeen tiedot säilyvät tällä sivulla vain sen ollessa avoinna.</p></div><aside class="checkout-summary"><h3  data-fi="Tilauksesi" data-en="Your request">Tilauksesi</h3><div id="order-lines"></div><div class="cart-total"><span  data-fi="Tuotteet yhteensä" data-en="Product subtotal">Tuotteet yhteensä</span><strong id="order-total"></strong></div><p class="cart-note" data-fi="Toimituskulut ja maksutapa vahvistetaan sähköpostitse." data-en="Delivery costs and payment method will be confirmed by email.">Toimituskulut ja maksutapa vahvistetaan sähköpostitse.</p><p class="cart-note" data-fi="Tuotteiden hinnat ovat esimerkkejä. Saat lopullisen hinnan ja toimituskulut sähköpostitse ennen ostopäätöstä." data-en="Product prices are illustrative. We will email the final price and delivery costs before you decide to buy.">Tuotteiden hinnat ovat esimerkkejä. Saat lopullisen hinnan ja toimituskulut sähköpostitse ennen ostopäätöstä.</p><label class="terms-check"><input type="checkbox" name="terms" required><span><span  data-fi="Olen lukenut tilauspyynnön ehdot ja ymmärrän, että lähetän sitoumuksettoman tiedustelun." data-en="I have read the request terms and understand that I am sending a non-binding enquiry.">Olen lukenut tilauspyynnön ehdot ja ymmärrän, että lähetän sitoumuksettoman tiedustelun.</span> <a href="tilauspyynnon-ehdot.html" target="_blank" rel="noopener" data-fi="Lue ehdot" data-en="Read terms">Lue ehdot</a></span></label><button class="button" id="send-btn" type="submit" data-fi="Avaa tilauspyyntö sähköpostiin" data-en="Open request in email">Avaa tilauspyyntö sähköpostiin</button><p id="order-status" class="order-status" aria-live="polite"></p></aside></form></section>
+</main>
+<footer>
+<div><span>© 2026 APINORDIC</span><span>Finnish Honey</span></div>
+<div class="social-links"><a href="https://www.instagram.com/apinordic/" target="_blank" rel="noopener noreferrer" aria-label="APINORDIC Instagram">Instagram</a></div>
+</footer>
+<script src="script.js"></script>
+
+<script src="checkout.js"></script>
+</body>
+</html>

@@ -326,3 +326,20 @@ footer>div{display:flex;gap:22px}
   .mini-row img { width: 48px; height: 48px; }
   .basket-dialog { padding: 18px; }
 }
+
+/* Standalone basket and order request pages */
+.basket-route {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px max(24px, 7vw) 80px;
+}
+.basket-route > p { margin: 0 0 24px; }
+.basket-route > p a { color: var(--green); text-underline-offset: 4px; }
+.basket-route h1 {
+  font: 600 clamp(38px, 5vw, 60px)/1.2 "Cormorant Garamond", serif;
+  margin: 0 0 24px;
+}
+.basket-route .checkout-section { border-top: 0; padding-top: 0; }
+@media (max-width: 600px) {
+  .basket-route { padding: 28px 14px 60px; }
+}
