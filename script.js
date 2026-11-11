@@ -79,16 +79,102 @@
     if (a.getAttribute('href') === current) a.classList.add('active');
   });
 
-  // Cart count badge (cart is stored by shop.js in localStorage)
-  function updateCartCount() {
-    let n = 0;
+})();
+
+(() => {
+  const products = {
+    '250': { price: 8.90, image: 'assets/honey-bottle.webp', fi: 'Hunaja 250 g, puristuspullo', en: 'Honey 250 g, squeeze bottle' },
+    '500': { price: 14.90, image: 'assets/honey-jar.webp', fi: 'Hunaja 500 g, lasipurkki', en: 'Honey 500 g, glass jar' },
+    'duo': { price: 29.80, image: 'assets/honey-duo.webp', fi: 'Hunajalahja 2 × 500 g', en: 'Honey gift set 2 × 500 g' }
+  };
+  const key = 'apinordic-cart';
+  const language = () => document.documentElement.lang === 'en' ? 'en' : 'fi';
+  const text = (fi, en) => language() === 'fi' ? fi : en;
+  const money = amount => new Intl.NumberFormat(language() === 'fi' ? 'fi-FI' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(amount);
+  function read() {
     try {
-      const c = JSON.parse(localStorage.getItem('apinordic-cart') || '{}') || {};
-      n = Object.values(c).reduce((a, b) => a + (Number(b) > 0 ? Number(b) : 0), 0);
-    } catch (e) {}
-    $$('.cart-count').forEach(el => { el.textContent = n; el.hidden = n < 1; });
+      const saved = JSON.parse(localStorage.getItem(key) || '{}');
+      const result = {};
+      for (const id of Object.keys(products)) {
+        const count = Number(saved?.[id]);
+        if (Number.isFinite(count) && count >= 1) result[id] = Math.min(50, Math.floor(count));
+      }
+      return result;
+    } catch { return {}; }
   }
-  updateCartCount();
-  window.addEventListener('storage', updateCartCount);
-  window.addEventListener('apinordic-cart', updateCartCount);
+  let cart = read();
+  function set(id, quantity) {
+    if (!Object.hasOwn(products, id)) return;
+    const count = Number(quantity);
+    if (!Number.isFinite(count)) return;
+    if (count < 1) delete cart[id];
+    else cart[id] = Math.min(50, Math.floor(count));
+    try { localStorage.setItem(key, JSON.stringify(cart)); } catch {}
+    window.dispatchEvent(new Event('apinordic-cart'));
+  }
+  const total = () => Object.entries(cart).reduce((sum, [id, qty]) => sum + products[id].price * qty, 0);
+  const dialog = document.createElement('dialog');
+  dialog.className = 'basket-dialog';
+  dialog.setAttribute('aria-labelledby', 'basket-dialog-title');
+  dialog.innerHTML = '<div class="basket-dialog-heading"><h2 id="basket-dialog-title"></h2><button type="button" class="basket-close">×</button></div><div class="mini-items"></div><div class="mini-footer"><p class="mini-total"></p><a class="button" href="verkkokauppa.html#kori"></a></div>';
+  document.body.append(dialog);
+  dialog.querySelector('.basket-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+  dialog.querySelector('a').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('close', () => document.documentElement.classList.remove('basket-open'));
+  function open() {
+    renderMini();
+    dialog.showModal();
+    document.documentElement.classList.add('basket-open');
+  }
+  document.querySelectorAll('.cart-link').forEach(link => {
+    link.setAttribute('aria-haspopup', 'dialog');
+    link.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      open();
+    });
+  });
+  function renderMini() {
+    dialog.querySelector('h2').textContent = text('Ostoskori', 'Basket');
+    dialog.querySelector('.basket-close').setAttribute('aria-label', text('Sulje ostoskori', 'Close basket'));
+    const box = dialog.querySelector('.mini-items');
+    box.replaceChildren();
+    for (const [id, qty] of Object.entries(cart)) {
+      const product = products[id];
+      const row = document.createElement('div');
+      row.className = 'mini-row';
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = '';
+      const name = document.createElement('span');
+      name.textContent = product[language()] + ' · ' + qty + ' × ' + money(product.price);
+      const price = document.createElement('strong');
+      price.textContent = money(qty * product.price);
+      row.append(img, name, price);
+      box.append(row);
+    }
+    if (!Object.keys(cart).length) {
+      const empty = document.createElement('p');
+      empty.className = 'basket-empty';
+      empty.textContent = text('Ostoskori on tyhjä.', 'Your basket is empty.');
+      box.append(empty);
+    }
+    dialog.querySelector('.mini-total').textContent = text('Tuotteet yhteensä ', 'Product subtotal ') + money(total());
+    const link = dialog.querySelector('a');
+    link.textContent = Object.keys(cart).length ? text('Näytä ostoskori', 'View basket') : text('Tutustu tuotteisiin', 'Browse products');
+    link.href = Object.keys(cart).length ? 'verkkokauppa.html#kori' : 'verkkokauppa.html';
+    const count = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+    document.querySelectorAll('.cart-count').forEach(el => { el.textContent = count; el.hidden = count === 0; });
+  }
+  window.ApinordicCart = { products, language, text, money, total, set, open, items: () => ({ ...cart }) };
+  window.addEventListener('apinordic-cart', renderMini);
+  window.addEventListener('storage', event => {
+    if (event.key === key || event.key === null) {
+      cart = read();
+      window.dispatchEvent(new Event('apinordic-cart'));
+    }
+  });
+  new MutationObserver(renderMini).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  renderMini();
 })();

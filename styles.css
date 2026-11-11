@@ -261,3 +261,68 @@ footer>div{display:flex;gap:22px}
 @media (max-width: 380px) {
   .honey-guide .product-grid { grid-template-columns: 1fr; }
 }
+
+/* Basket and request form */
+.basket-open { overflow: hidden; }
+.basket-dialog { width: min(620px, calc(100% - 28px)); max-height: 85vh; border: 1px solid #d5c9b5; padding: 24px; background: var(--white); color: var(--ink); box-shadow: 0 20px 80px #17372f40; }
+.basket-dialog::backdrop { background: #17372f66; }
+.basket-dialog-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.basket-dialog h2, .basket-page h2, .checkout-section h2 { font: 600 clamp(32px,4vw,48px)/1.2 "Cormorant Garamond",serif; margin: 0 0 24px; }
+.basket-close { border: 0; background: transparent; color: var(--ink); font-size: 30px; cursor: pointer; width: 44px; height: 44px; }
+.basket-empty { background: #edf1eb; padding: 26px; line-height: 1.7; }
+.mini-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid #e5dccb; font-size: 14px; }
+.mini-row img { width: 64px; height: 64px; object-fit: cover; }
+.mini-row span { flex: 1; }
+.mini-row strong { white-space: nowrap; }
+.mini-footer .button { display: block; text-align: center; }
+.basket-table { width: 100%; border-collapse: collapse; background: var(--white); }
+.basket-table th, .basket-table td { padding: 18px 14px; text-align: left; border-bottom: 1px solid #e5dccb; }
+.basket-table th { background: #f1e9db; font-size: 13px; }
+.basket-table td { font-size: 14px; }
+.basket-table th:last-child, .basket-table td:last-child { text-align: right; }
+.basket-product { display: flex; align-items: center; gap: 18px; }
+.basket-product img { width: 82px; height: 82px; object-fit: cover; }
+.basket-product a { color: var(--ink); }
+.basket-product .link-btn { display: block; margin-top: 10px; padding: 4px 0; }
+.basket-table .qty button, .basket-table .qty input { min-height: 42px; }
+.basket-summary { max-width: 460px; margin: 28px 0 0 auto; padding: 28px; border: 1px solid #d5c9b5; background: var(--white); }
+.basket-summary h3, .checkout-grid h3 { font: 600 30px "Cormorant Garamond",serif; margin: 0 0 20px; }
+.basket-summary .button { margin-top: 22px; display: block; text-align: center; }
+.basket-summary .cart-note, .checkout-summary .cart-note { margin-top: 16px; }
+.checkout-section { border-top: 1px solid #d5c9b5; padding-top: 40px; }
+.checkout-section > p { line-height: 1.7; max-width: 70ch; }
+.checkout-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 36px; align-items: start; margin-top: 30px; }
+.checkout-summary { padding: 28px; border: 1px solid #d5c9b5; background: var(--white); }
+.field-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 16px; }
+.checkout-fields label { display: block; margin-bottom: 20px; font-size: 13px; }
+.checkout-fields label > span { display: block; margin-bottom: 8px; }
+.checkout-fields input, .checkout-fields select, .checkout-fields textarea { width: 100%; min-height: 46px; padding: 12px; border: 1px solid #cbbfa9; background: var(--white); color: var(--ink); font: inherit; }
+.checkout-fields textarea { resize: vertical; }
+.checkout-grid input:focus-visible, .checkout-grid select:focus-visible, .checkout-grid textarea:focus-visible, .basket-table button:focus-visible, .basket-dialog button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.order-line { display: flex; justify-content: space-between; gap: 18px; padding: 16px 0; border-bottom: 1px solid #e5dccb; font-size: 14px; line-height: 1.6; }
+.order-line strong { white-space: nowrap; }
+.terms-check { display: flex; gap: 10px; margin: 26px 0; font-size: 13px; line-height: 1.7; }
+.terms-check input { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 3px; }
+.terms-check a, .request-terms a { color: var(--green); }
+.checkout-summary .button { width: 100%; cursor: pointer; }
+.button:disabled { opacity: .5; cursor: default; }
+.toast button { border: 0; color: #e6c88f; background: none; text-decoration: underline; font: inherit; cursor: pointer; }
+.request-terms { max-width: 850px; padding: 50px 24px 80px; margin: auto; line-height: 1.8; }
+.request-terms h1 { font: 600 48px "Cormorant Garamond",serif; }
+.request-terms h2 { font: 600 30px "Cormorant Garamond",serif; margin-top: 32px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+[hidden] { display: none !important; }
+@media(max-width:800px) { .checkout-grid { grid-template-columns: 1fr; } }
+@media(max-width:600px) {
+  .basket-table thead { display: none; }
+  .basket-table, .basket-table tbody, .basket-table tr, .basket-table td { display: block; }
+  .basket-table tr { border: 1px solid #d5c9b5; margin-bottom: 18px; padding: 8px; }
+  .basket-table td[data-label] { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .basket-table td[data-label]::before { content: attr(data-label); font-size: 13px; }
+  .basket-table td:last-child { border-bottom: 0; }
+  .basket-summary, .checkout-summary { padding: 20px; }
+  .field-grid { grid-template-columns: 1fr; }
+  .mini-row { gap: 10px; flex-wrap: wrap; }
+  .mini-row img { width: 48px; height: 48px; }
+  .basket-dialog { padding: 18px; }
+}

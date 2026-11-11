@@ -1,108 +1,162 @@
 (() => {
-  // ====== EDIT HERE: prices (EUR) – these are SAMPLE prices ======
-  const PRICES = { '250': 8.90, '500': 14.90, 'duo': 29.80 };
-  const EMAIL = 'info@apinordic.com';
-  // ===============================================================
-  const NAMES = {
-    '250': { fi: 'Hunaja 250 g (puristuspullo)', en: 'Honey 250 g (squeeze bottle)' },
-    '500': { fi: 'Hunaja 500 g (lasipurkki)', en: 'Honey 500 g (glass jar)' },
-    'duo': { fi: 'Hunajalahja (2 × 500 g)', en: 'Honey gift set (2 × 500 g)' }
-  };
-  const T = {
-    fi: { added: 'Lisätty koriin', view: 'Näytä kori', btnAdded: 'Lisätty ✓', empty: 'Koriisi ei ole vielä tuotteita.', remove: 'Poista', need: 'Lisää vähintään yksi tuote koriin.', fill: 'Täytä nimi, sähköposti ja osoite.',
-          sent: 'Sähköpostiohjelmasi avautuu. Jos mitään ei tapahdu, lähetä tilaus osoitteeseen ' + EMAIL + '.', subject: 'Tilauspyyntö – APINORDIC',
-          hello: 'Hei APINORDIC,', want: 'haluaisin tilata seuraavat tuotteet:', total: 'Yhteensä', det: 'Yhteystiedot', name: 'Nimi', email: 'Sähköposti', phone: 'Puhelin', addr: 'Toimitusosoite / nouto', msg: 'Viesti', thanks: 'Kiitos!' },
-    en: { added: 'Added to basket', view: 'View basket', btnAdded: 'Added ✓', empty: 'Your basket is empty.', remove: 'Remove', need: 'Please add at least one product.', fill: 'Please fill in name, email and address.',
-          sent: 'Your email app should open. If nothing happens, send the order to ' + EMAIL + '.', subject: 'Order request – APINORDIC',
-          hello: 'Hello APINORDIC,', want: 'I would like to order the following:', total: 'Total', det: 'My details', name: 'Name', email: 'Email', phone: 'Phone', addr: 'Delivery address / pick-up', msg: 'Message', thanks: 'Thank you!' }
-  };
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'fi');
-  const money = n => new Intl.NumberFormat(lang() === 'fi' ? 'fi-FI' : 'en-GB', { style: 'currency', currency: 'EUR' }).format(n);
-
-  let cart = {};
-  try { cart = JSON.parse(localStorage.getItem('apinordic-cart') || '{}') || {}; } catch (e) { cart = {}; }
-  Object.keys(cart).forEach(k => { if (!(k in PRICES) || !(cart[k] > 0)) delete cart[k]; });
-  const save = () => { try { localStorage.setItem('apinordic-cart', JSON.stringify(cart)); } catch (e) {} window.dispatchEvent(new Event('apinordic-cart')); };
-
+  const C = window.ApinordicCart;
+  const $ = selector => document.querySelector(selector);
+  const form = $('#order-form');
+  const status = $('#order-status');
+  function element(tag, content, className) {
+    const node = document.createElement(tag);
+    node.textContent = content;
+    if (className) node.className = className;
+    return node;
+  }
   function render() {
-    const L = lang(), box = $('#cart-items');
-    $$('.shop-card').forEach(c => { const p = $('[data-price]', c); if (p) p.textContent = money(PRICES[c.dataset.id]); });
+    const active = document.activeElement;
+    const focusId = active?.dataset.focusId;
+    const cart = C.items();
     const ids = Object.keys(cart);
-    box.textContent = '';
-    if (!ids.length) { const p = document.createElement('p'); p.className = 'cart-empty'; p.textContent = T[L].empty; box.append(p); }
-    let total = 0;
-    ids.forEach(id => {
-      const qty = cart[id], line = qty * PRICES[id]; total += line;
-      const row = document.createElement('div'); row.className = 'cart-row';
-      const info = document.createElement('div');
-      const n = document.createElement('strong'); n.textContent = NAMES[id][L];
-      const q = document.createElement('span'); q.textContent = qty + ' × ' + money(PRICES[id]);
-      info.append(n, q);
-      const right = document.createElement('div'); right.className = 'cart-right';
-      const s = document.createElement('span'); s.textContent = money(line);
-      const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'link-btn'; rm.textContent = T[L].remove;
-      rm.addEventListener('click', () => { delete cart[id]; save(); render(); });
-      right.append(s, rm);
-      row.append(info, right); box.append(row);
-    });
-    $('#cart-total').textContent = money(total);
-  }
-
-  // feedback after adding: button label + small toast
-  let toast, toastTimer;
-  function feedback(btn) {
-    const L = lang();
-    const old = btn.dataset[L];
-    btn.textContent = T[L].btnAdded; btn.disabled = true;
-    setTimeout(() => { btn.textContent = btn.dataset[lang()]; btn.disabled = false; }, 1400);
-    if (!toast) {
-      toast = document.createElement('div'); toast.className = 'toast'; toast.setAttribute('role', 'status');
-      document.body.append(toast);
+    const box = $('#cart-items');
+    box.replaceChildren();
+    $('#order-lines').replaceChildren();
+    if (!ids.length) box.append(element('p', C.text('Ostoskori on tyhjä. Lisää tuotteita yllä olevasta valikoimasta.', 'Your basket is empty. Add products from the range above.'), 'basket-empty'));
+    else {
+      const table = document.createElement('table');
+      table.className = 'basket-table';
+      const caption = element('caption', C.text('Ostoskorin tuotteet', 'Basket products'), 'visually-hidden');
+      table.append(caption);
+      const header = document.createElement('thead');
+      const heading = document.createElement('tr');
+      for (const label of [C.text('Tuote', 'Product'), C.text('Hinta', 'Price'), C.text('Määrä', 'Quantity'), C.text('Välisumma', 'Subtotal')]) {
+        const th = element('th', label);
+        th.scope = 'col';
+        heading.append(th);
+      }
+      header.append(heading);
+      table.append(header);
+      const body = document.createElement('tbody');
+      for (const id of ids) {
+        const product = C.products[id], qty = cart[id];
+        const row = document.createElement('tr');
+        const info = document.createElement('td');
+        const details = element('div', '', 'basket-product');
+        const image = document.createElement('img');
+        image.src = product.image;
+        image.alt = '';
+        const name = element('a', product[C.language()]);
+        name.href = '#hunaja-' + id;
+        const remove = element('button', C.text('Poista', 'Remove'), 'link-btn');
+        remove.type = 'button';
+        remove.dataset.focusId = id + '-remove';
+        remove.setAttribute('aria-label', C.text('Poista ', 'Remove ') + product[C.language()]);
+        remove.addEventListener('click', () => {
+          C.set(id, 0);
+          const next = box.querySelector('button');
+          if (next) next.focus();
+          else { $('#cart-title').tabIndex = -1; $('#cart-title').focus(); }
+        });
+        const copy = document.createElement('div');
+        copy.append(name, remove);
+        details.append(image, copy);
+        info.append(details);
+        const price = element('td', C.money(product.price));
+        price.dataset.label = C.text('Hinta', 'Price');
+        const quantity = document.createElement('td');
+        quantity.dataset.label = C.text('Määrä', 'Quantity');
+        const controls = element('div', '', 'qty');
+        const input = document.createElement('input');
+        input.type = 'number'; input.min = 1; input.max = 50; input.value = qty;
+        input.dataset.focusId = id + '-quantity';
+        input.setAttribute('aria-label', C.text('Määrä: ', 'Quantity: ') + product[C.language()]);
+        input.addEventListener('change', () => {
+          const value = Number(input.value);
+          C.set(id, Number.isFinite(value) && value >= 1 ? value : 1);
+        });
+        for (const delta of [-1, 1]) {
+          const button = element('button', delta === -1 ? '−' : '+');
+          button.type = 'button';
+          button.dataset.focusId = id + (delta === -1 ? '-minus' : '-plus');
+          button.setAttribute('aria-label', C.text(delta === -1 ? 'Vähennä määrää' : 'Lisää määrää', delta === -1 ? 'Decrease quantity' : 'Increase quantity'));
+          button.disabled = delta === -1 ? qty <= 1 : qty >= 50;
+          button.addEventListener('click', () => C.set(id, qty + delta));
+          controls.append(button);
+          if (delta === -1) controls.append(input);
+        }
+        quantity.append(controls);
+        const subtotal = element('td', C.money(qty * product.price));
+        subtotal.dataset.label = C.text('Välisumma', 'Subtotal');
+        row.append(info, price, quantity, subtotal);
+        body.append(row);
+        const line = element('div', '', 'order-line');
+        line.append(element('span', product[C.language()] + ' × ' + qty), element('strong', C.money(qty * product.price)));
+        $('#order-lines').append(line);
+      }
+      table.append(body);
+      box.append(table);
     }
-    toast.textContent = '';
-    const msg = document.createElement('span'); msg.textContent = T[L].added;
-    const a = document.createElement('a'); a.href = '#kori'; a.textContent = T[L].view;
-    toast.append(msg, a); toast.classList.add('show');
-    clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    for (const id of ['#cart-total', '#order-total']) $(id).textContent = C.money(C.total());
+    $('#checkout-link').hidden = !ids.length;
+    $('#send-btn').disabled = !ids.length;
+    document.querySelectorAll('.shop-card').forEach(card => {
+      card.querySelector('[data-price]').textContent = C.money(C.products[card.dataset.id].price);
+    });
+    if (focusId) box.querySelector('[data-focus-id="' + focusId + '"]')?.focus();
   }
-
-  // product cards
-  $$('.shop-card').forEach(card => {
-    const input = $('[data-qty-input]', card);
-    $$('[data-qty]', card).forEach(b => b.addEventListener('click', () => {
-      const v = Math.min(20, Math.max(1, (parseInt(input.value, 10) || 1) + parseInt(b.dataset.qty, 10)));
-      input.value = v;
+  let feedbackTimer;
+  const feedback = element('div', '', 'toast');
+  feedback.setAttribute('role', 'status');
+  document.body.append(feedback);
+  document.querySelectorAll('.shop-card').forEach(card => {
+    const input = card.querySelector('[data-qty-input]');
+    const quantity = () => Math.min(20, Math.max(1, parseInt(input.value, 10) || 1));
+    card.querySelectorAll('[data-qty]').forEach(button => button.addEventListener('click', () => {
+      input.value = Math.min(20, Math.max(1, quantity() + Number(button.dataset.qty)));
     }));
-    $('[data-add]', card).addEventListener('click', () => {
-      const v = Math.min(20, Math.max(1, parseInt(input.value, 10) || 1));
-      cart[card.dataset.id] = Math.min(50, (cart[card.dataset.id] || 0) + v);
-      save(); render();
-      const status = $('#order-status'); if (status) status.textContent = '';
-      feedback($('[data-add]', card));
+    card.querySelector('[data-add]').addEventListener('click', () => {
+      const id = card.dataset.id;
+      C.set(id, (C.items()[id] || 0) + quantity());
+      status.textContent = '';
+      const view = element('button', C.text('Näytä kori', 'View basket'));
+      view.type = 'button';
+      view.addEventListener('click', C.open);
+      feedback.replaceChildren(element('span', C.text('Ostoskori päivitetty', 'Basket updated')), view);
+      feedback.classList.add('show');
+      clearTimeout(feedbackTimer);
+      feedbackTimer = setTimeout(() => feedback.classList.remove('show'), 4000);
     });
   });
-
-  // order form -> mailto
-  const form = $('#order-form'), status = $('#order-status');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const L = lang(), t = T[L], f = new FormData(form);
-    const get = k => (f.get(k) || '').toString().trim();
-    const ids = Object.keys(cart);
-    if (!ids.length) { status.textContent = t.need; return; }
-    if (!get('name') || !get('email') || !get('address') || !form.email.checkValidity()) { status.textContent = t.fill; return; }
-    let total = 0;
-    const lines = ids.map(id => { const l = cart[id] * PRICES[id]; total += l; return '- ' + NAMES[id][L] + ': ' + cart[id] + ' × ' + money(PRICES[id]) + ' = ' + money(l); });
-    const body = [t.hello, '', t.want, '', ...lines, '', t.total + ': ' + money(total), '', t.det + ':',
-      t.name + ': ' + get('name'), t.email + ': ' + get('email'), t.phone + ': ' + (get('phone') || '-'),
-      t.addr + ': ' + get('address'), t.msg + ': ' + (get('message') || '-'), '', t.thanks].join('\n');
-    window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(t.subject) + '&body=' + encodeURIComponent(body);
-    status.textContent = t.sent;
+  const delivery = form.elements.namedItem('delivery');
+  function updateDelivery() {
+    const isDelivery = delivery.value === 'delivery';
+    $('#delivery-fields').hidden = !isDelivery;
+    $('#delivery-fields').querySelectorAll('input').forEach(input => {
+      input.disabled = !isDelivery;
+      input.required = isDelivery;
+    });
+  }
+  delivery.addEventListener('change', updateDelivery);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!Object.keys(C.items()).length) return;
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const get = name => (data.get(name) || '').toString().trim();
+    if (!get('firstName') || !get('lastName') || (delivery.value === 'delivery' && ['street', 'postal', 'city'].some(name => !get(name)))) {
+      status.textContent = C.text('Täytä pakolliset kentät.', 'Complete the required fields.');
+      return;
+    }
+    const lines = Object.entries(C.items()).map(([id, qty]) => C.products[id][C.language()] + ': ' + qty + ' × ' + C.money(C.products[id].price));
+    const address = delivery.value === 'delivery' ? [get('street'), get('postal'), get('city')].join(', ') : C.text('Nouto sopimuksen mukaan', 'Pick-up by arrangement');
+    const body = [
+      C.text('Hei APINORDIC! Haluaisin tiedustella seuraavia tuotteita:', 'Hello APINORDIC! I would like to enquire about these products:'),
+      ...lines, '', C.text('Tuotteiden esimerkkihinta yhteensä: ', 'Illustrative product subtotal: ') + C.money(C.total()),
+      C.text('Pyydän vahvistamaan saatavuuden, lopullisen hinnan veroineen, toimituskulut, toimitusajan ja maksutavan.', 'Please confirm availability, the final price including applicable taxes, delivery costs, delivery time and payment method.'),
+      '', get('firstName') + ' ' + get('lastName'), get('company'), get('email'), get('phone'), address, get('message'), '',
+      C.text('Olen lukenut tilauspyynnön ehdot (11.11.2026). Tämä on sitoumukseton tiedustelu.', 'I have read the request terms (11 November 2026). This is a non-binding enquiry.')
+    ].join('\n');
+    window.location.href = 'mailto:info@apinordic.com?subject=' + encodeURIComponent(C.text('Tilauspyyntö – APINORDIC', 'Order request – APINORDIC')) + '&body=' + encodeURIComponent(body);
+    status.textContent = C.text('Lähetä luonnos sähköpostiohjelmassasi. Jos ohjelma ei avaudu, ota yhteyttä: info@apinordic.com.', 'Send the draft in your email app. If it does not open, contact info@apinordic.com.');
   });
-
-  // re-render when language toggles
+  window.addEventListener('apinordic-cart', render);
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  updateDelivery();
   render();
 })();
