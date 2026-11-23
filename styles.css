@@ -343,3 +343,38 @@ footer>div{display:flex;gap:22px}
 @media (max-width: 600px) {
   .basket-route { padding: 28px 14px 60px; }
 }
+/* ===== APINORDIC: canlı bal/amber vurgu ===== */
+:root{--honey:#e3a31b;--honey-deep:#b87800;--green:#1f4d3f;--green2:#143a2f}
+
+/* Hero */
+.hero{background:
+  radial-gradient(circle at 82% 38%,rgba(227,163,27,.45),transparent 32%),
+  linear-gradient(120deg,#fff4d6 0%,#f7dc95 100%)}
+.hero .eyebrow{color:var(--honey-deep)}
+.hero h1 em{color:var(--honey-deep)}
+.lead{color:#2c4a40}
+.hero-mark p{color:var(--honey-deep)}
+
+/* Butonlar */
+.button{background:var(--honey);border-color:var(--honey);color:#143a2f;font-weight:600}
+.button:hover{background:var(--green2);border-color:var(--green2);color:#fff}
+
+/* Küçük yazılar, menü ve detaylar */
+.eyebrow{color:var(--honey-deep)}
+.nav nav>a.active,.lang button.active{color:var(--honey-deep)}
+.nav nav>a:after{background:var(--honey)}
+.cards span,.home-links span{color:var(--honey-deep)}
+.gold{color:var(--honey)}
+.coming{border-color:var(--honey);color:var(--honey)}
+.social-links a:hover{color:var(--honey);border-color:var(--honey)}
+
+/* Kartlar */
+.home-links a:hover{border-color:var(--honey);background:#fff6dc}
+
+/* Alıntı bölümü */
+.quote{background:var(--honey);color:#143a2f}
+.quote span{color:#143a2f}
+
+/* Tarinamme üst bölümü: hafif bal zemin */
+.story-intro.story-intro-text{background:linear-gradient(135deg,#fff4d6 0%,#f7dc95 100%)!important}
+.story-copy h1{color:var(--green2)}
