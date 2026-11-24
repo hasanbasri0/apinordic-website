@@ -18,4 +18,4 @@ Static site (HTML, CSS, JS). Bilingual: Finnish / English via the FI/EN toggle (
 - Email: info@apinordic.com
 
 ## Assets
-`assets/apinordic-logo-new.png` is required (logo and favicon).
+`assets/apinordic_logo.png` is the shared logo used in every page header, the home hero, and the favicon. It includes the wordmark; do not add a second brand label or crop it into a circle.

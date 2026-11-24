@@ -7,9 +7,8 @@ body{margin:0;background:var(--cream);color:var(--ink);font-family:Manrope,sans-
 
 /* ---------- Header / navigation ---------- */
 .nav{height:88px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;width:100%;color:var(--ink);background:rgba(255,253,248,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(23,53,45,.12);box-shadow:0 7px 26px rgba(32,62,53,.06)}
-.brand{display:flex;align-items:center;gap:10px;font:600 25px "Cormorant Garamond",serif;letter-spacing:.16em;color:inherit;text-decoration:none}
-.brand-logo{width:54px;height:54px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--cream)}
-.brand img{width:100%;height:100%;object-fit:contain;transform:scale(.88)}
+.brand{display:flex;align-items:center;flex:0 0 auto;color:inherit;text-decoration:none}
+.brand img{display:block;width:92px;height:80px;object-fit:contain}
 .nav nav{display:flex;align-items:center;gap:28px}
 .nav nav>a{color:inherit;text-decoration:none;font-size:12px;font-weight:600;position:relative}
 .nav nav>a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:var(--gold);transition:.25s}
@@ -27,7 +26,7 @@ body{margin:0;background:var(--cream);color:var(--ink);font-family:Manrope,sans-
 .search-panel input{width:100%;border:0;border-bottom:1px solid #9c927f;background:transparent;padding:12px 2px;font:16px Manrope;color:var(--ink);outline:none}
 .search-close{border:0;background:none;font-size:25px;color:var(--ink);cursor:pointer}
 .search-panel p{grid-column:1/-1;margin:2px 0 0;font-size:11px;color:#7d776c}
-.nav nav>a:focus-visible,.button:focus-visible,.lang button:focus-visible,.menu:focus-visible,.search-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.brand:focus-visible,.nav nav>a:focus-visible,.button:focus-visible,.lang button:focus-visible,.menu:focus-visible,.search-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 /* ---------- Shared typography ---------- */
 .eyebrow{font-size:10px;letter-spacing:.24em;font-weight:600;margin-bottom:24px}
@@ -49,7 +48,7 @@ body{margin:0;background:var(--cream);color:var(--ink);font-family:Manrope,sans-
 .lead{max-width:570px;font-size:15px;line-height:1.8;margin:32px 0;color:#405c53}
 .hero-mark{display:flex;flex-direction:column;align-items:center;text-align:center}
 .honey-orb{width:min(29vw,340px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:rgba(255,253,248,.6);border:1px solid rgba(184,137,69,.42);box-shadow:0 30px 80px rgba(84,64,31,.13),inset 0 0 0 12px rgba(255,255,255,.28)}
-.hero-mark img{width:82%;height:82%;object-fit:contain;border-radius:50%;mix-blend-mode:multiply;opacity:.96}
+.hero-mark img{width:82%;height:82%;object-fit:contain;border-radius:0}
 .hero-mark p{font-size:9px;letter-spacing:.28em;color:#98713b;margin-top:22px}
 
 /* ---------- Home: sections ---------- */
@@ -120,8 +119,7 @@ footer>div{display:flex;gap:22px}
 @media(max-width:900px){
   html{scroll-padding-top:84px}
   .nav{height:72px}
-  .brand-logo{width:44px;height:44px}
-  .brand img{transform:none}
+  .brand img{width:76px;height:64px}
   .menu{display:block}
   .nav nav{display:none;position:absolute;top:72px;left:0;right:0;background:var(--cream);color:var(--ink);padding:28px 6vw;flex-direction:column;align-items:flex-start;box-shadow:0 12px 20px rgba(0,0,0,.08)}
   .nav nav.open{display:flex}
