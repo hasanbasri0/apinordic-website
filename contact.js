@@ -5,7 +5,8 @@
   const message = document.querySelector('#contact-text');
   const status = document.querySelector('#contact-status');
   const t = (fi, en) => document.documentElement.lang === 'en' ? en : fi;
-  if (new URLSearchParams(location.search).get('topic') === 'hives') form.elements.topic.value = 'hives';
+  const topicParam = new URLSearchParams(location.search).get('topic');
+  if ([...form.elements.topic.options].some(option => option.value === topicParam)) form.elements.topic.value = topicParam;
   function clear() { output.hidden = true; message.value = ''; status.textContent = ''; document.querySelector('#contact-email').removeAttribute('href'); }
   form.addEventListener('input', clear);
   new MutationObserver(clear).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
