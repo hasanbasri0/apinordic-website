@@ -376,3 +376,12 @@ footer>div{display:flex;gap:22px}
 /* Tarinamme üst bölümü: hafif bal zemin */
 .story-intro.story-intro-text{background:linear-gradient(135deg,#fff4d6 0%,#f7dc95 100%)!important}
 .story-copy h1{color:var(--green2)}
+
+/* Preview clarity, shared navigation and enquiry fallback */
+.preview-notice{margin:24px auto;padding:20px 24px;max-width:1100px;background:#fff0c7;border-left:4px solid #b87800;color:#173b32;line-height:1.7;font-size:14px}
+.footer-links{flex-wrap:wrap;letter-spacing:normal}.footer-links a{color:inherit}footer{flex-wrap:wrap;gap:22px}
+#request-output{margin-top:32px;padding:24px;background:#fffdf8;border:1px solid #d5c9b5}#request-text{display:block;width:100%;margin:12px 0 20px;padding:16px;font:14px/1.6 Manrope,sans-serif}.request-actions{display:flex;gap:12px;flex-wrap:wrap}
+.skip-link{position:fixed;top:-100px;left:12px;z-index:100;background:white;color:#173b32;padding:12px}.skip-link:focus{top:12px}
+.nav nav{gap:18px}.nav button{min-height:44px;min-width:32px}.qty button,.qty input{min-height:44px}
+@media(min-width:901px) and (max-width:1180px){.nav{padding-inline:2vw}.nav nav{gap:10px}.nav nav>a{font-size:11px}.brand img{width:76px}}
+@media(max-width:900px){.nav nav{max-height:calc(100dvh - 72px);overflow-y:auto;gap:12px}.nav nav>a{padding:8px 0}.preview-notice{margin:16px 14px}.hero h1{font-size:clamp(38px,10vw,52px)}}

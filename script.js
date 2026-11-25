@@ -20,6 +20,7 @@
   const searchInput = $('#site-search');
   function setLang(lang) {
     document.documentElement.lang = lang;
+    document.querySelectorAll('.cart-link').forEach(a => { a.setAttribute('aria-label', lang === 'fi' ? 'Ostoskori' : 'Basket'); a.title = lang === 'fi' ? 'Ostoskori' : 'Basket'; });
     $$('[data-fi][data-en]').forEach(el => {
       const v = el.dataset[lang];
       if (v == null) return;
@@ -76,7 +77,7 @@
   // Active menu link
   const current = location.pathname.split('/').pop() || 'index.html';
   $$('.nav nav > a').forEach(a => {
-    if (a.getAttribute('href') === current) a.classList.add('active');
+    if (a.getAttribute('href') === current) { a.classList.add('active'); a.setAttribute('aria-current', 'page'); }
   });
 
 })();

@@ -25,39 +25,38 @@
     }
     $('#order-total').textContent = C.money(C.total());
   }
-  const delivery = form.elements.namedItem('delivery');
-  function updateDelivery() {
-    const isDelivery = delivery.value === 'delivery';
-    $('#delivery-fields').hidden = !isDelivery;
-    $('#delivery-fields').querySelectorAll('input').forEach(input => {
-      input.disabled = !isDelivery;
-      input.required = isDelivery;
-    });
-  }
-  delivery.addEventListener('change', updateDelivery);
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!Object.keys(C.items()).length) return;
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const get = name => (data.get(name) || '').toString().trim();
-    if (!get('firstName') || !get('lastName') || (delivery.value === 'delivery' && ['street', 'postal', 'city'].some(name => !get(name)))) {
+    if (!get('firstName') || !get('lastName')) {
       status.textContent = C.text('Täytä pakolliset kentät.', 'Complete the required fields.');
       return;
     }
     const lines = Object.entries(C.items()).map(([id, qty]) => C.products[id][C.language()] + ': ' + qty + ' × ' + C.money(C.products[id].price));
-    const address = delivery.value === 'delivery' ? [get('street'), get('postal'), get('city')].join(', ') : C.text('Nouto sopimuksen mukaan', 'Pick-up by arrangement');
     const body = [
       C.text('Hei APINORDIC! Haluaisin tiedustella seuraavia tuotteita:', 'Hello APINORDIC! I would like to enquire about these products:'),
       ...lines, '', C.text('Tuotteiden esimerkkihinta yhteensä: ', 'Illustrative product subtotal: ') + C.money(C.total()),
       C.text('Pyydän vahvistamaan saatavuuden, lopullisen hinnan veroineen, toimituskulut, toimitusajan ja maksutavan.', 'Please confirm availability, the final price including applicable taxes, delivery costs, delivery time and payment method.'),
-      '', get('firstName') + ' ' + get('lastName'), get('company'), get('email'), get('phone'), address, get('message'), '',
-      C.text('Olen lukenut tilauspyynnön ehdot (11.11.2026). Tämä on sitoumukseton tiedustelu.', 'I have read the request terms (11 November 2026). This is a non-binding enquiry.')
+      '', get('firstName') + ' ' + get('lastName'), get('email'), get('message'), '',
+      C.text('Olen lukenut tilauspyynnön ehdot (25.11.2026). Tämä on sitoumukseton tiedustelu.', 'I have read the request terms (25 November 2026). This is a non-binding enquiry.')
     ].join('\n');
-    window.location.href = 'mailto:info@apinordic.com?subject=' + encodeURIComponent(C.text('Tilauspyyntö – APINORDIC', 'Order request – APINORDIC')) + '&body=' + encodeURIComponent(body);
-    status.textContent = C.text('Lähetä luonnos sähköpostiohjelmassasi. Jos ohjelma ei avaudu, ota yhteyttä: info@apinordic.com.', 'Send the draft in your email app. If it does not open, contact info@apinordic.com.');
+    $('#request-text').value = body;
+    $('#request-output').hidden = false;
+    $('#request-text').focus();
+    $('#email-request').href = 'mailto:info@apinordic.com?subject=' + encodeURIComponent(C.text('Tilauspyyntö – APINORDIC', 'Order request – APINORDIC')) + '&body=' + encodeURIComponent(body);
+    status.textContent = C.text('Teksti on valmis alla. Mitään ei ole lähetetty.', 'Your text is ready below. Nothing has been sent.');
   });
-  updateDelivery();
+  form.addEventListener('input', () => { $('#request-output').hidden = true; $('#copy-status').textContent = ''; });
+  $('#copy-request').addEventListener('click', async () => {
+    const field = $('#request-text');
+    try { await navigator.clipboard.writeText(field.value); $('#copy-status').textContent = C.text('Kopioitu. Liitä viesti omaan sähköpostiisi.', 'Copied. Paste the message into your email.'); }
+    catch { field.focus(); field.select(); $('#copy-status').textContent = C.text('Valitse ja kopioi teksti yllä olevasta kentästä.', 'Select and copy the text in the field above.'); }
+  });
+  window.addEventListener('apinordic-cart', () => { $('#request-output').hidden = true; });
+  new MutationObserver(() => { $('#request-output').hidden = true; }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   window.addEventListener('apinordic-cart', render);
   new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   render();
