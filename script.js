@@ -35,7 +35,11 @@
         } else el.append(b);
       } else el.textContent = v;
     });
-    langButtons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    $$('[data-aria-fi][data-aria-en]').forEach(el => el.setAttribute('aria-label', lang === 'fi' ? el.dataset.ariaFi : el.dataset.ariaEn));
+    langButtons.forEach(b => { b.classList.toggle('active', b.dataset.lang === lang); b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    [['.menu','Avaa valikko','Open menu'],['.search-toggle','Haku','Search'],['.search-close','Sulje','Close']].forEach(([selector,fi,en]) => {
+      const el = $(selector); if (el) { el.setAttribute('aria-label', lang === 'fi' ? fi : en); if(el.hasAttribute('title')) el.title = lang === 'fi' ? fi : en; }
+    });
     if (searchInput) {
       const key = 'placeholder' + lang.charAt(0).toUpperCase() + lang.slice(1);
       searchInput.placeholder = searchInput.dataset[key] || searchInput.placeholder;

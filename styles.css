@@ -385,3 +385,5 @@ footer>div{display:flex;gap:22px}
 .nav nav{gap:18px}.nav button{min-height:44px;min-width:32px}.qty button,.qty input{min-height:44px}
 @media(min-width:901px) and (max-width:1180px){.nav{padding-inline:2vw}.nav nav{gap:10px}.nav nav>a{font-size:11px}.brand img{width:76px}}
 @media(max-width:900px){.nav nav{max-height:calc(100dvh - 72px);overflow-y:auto;gap:12px}.nav nav>a{padding:8px 0}.preview-notice{margin:16px 14px}.hero h1{font-size:clamp(38px,10vw,52px)}}
+
+.contact-form-section{max-width:760px;margin:0 auto;padding:40px 6vw 80px}.contact-form-section h2{font:500 42px "Cormorant Garamond",serif}.contact-form-section form{display:grid;gap:20px}.contact-form-section label{display:grid;gap:8px}.contact-form-section input,.contact-form-section select,.contact-form-section textarea{box-sizing:border-box;width:100%;min-width:0;padding:12px;border:1px solid #8a9b8d;border-radius:6px;background:#fffdf8;color:var(--ink);font:inherit}.contact-form-section .button{width:fit-content}.contact-form-section #contact-output{margin-top:28px}.contact-form-section :focus-visible{outline:3px solid #b87800;outline-offset:3px}
