@@ -7,7 +7,26 @@
     if (className) node.className = className;
     return node;
   }
+  const filterButtons = [...document.querySelectorAll('[data-filter]')];
+  let activeFilter = 'all';
+  function filterProducts() {
+    let count = 0;
+    document.querySelectorAll('.shop-card').forEach(card => {
+      card.hidden = activeFilter !== 'all' && card.dataset.category !== activeFilter;
+      if (!card.hidden) count++;
+    });
+    filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === activeFilter)));
+    const status = document.querySelector('.catalog-count');
+    if (status) status.textContent = C.text(`${count} tuotetta`, `${count} ${count === 1 ? 'product' : 'products'}`);
+  }
+  filterButtons.forEach(button => button.addEventListener('click', () => {
+    activeFilter = button.dataset.filter;
+    filterProducts();
+  }));
+  const filters = document.querySelector('.catalog-filters');
+  if (filters) filters.hidden = false;
   function render() {
+    filterProducts();
     document.querySelectorAll('.shop-card').forEach(card => {
       card.querySelector('[data-price]').textContent = C.money(C.products[card.dataset.id].price);
     });
