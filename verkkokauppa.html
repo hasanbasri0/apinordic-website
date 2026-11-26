@@ -16,7 +16,35 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hasanbasri0.github.io/apinordic-website/verkkokauppa.html">
 <meta property="og:image" content="https://hasanbasri0.github.io/apinordic-website/assets/apinordic_logo.png">
-</head>
+<style>
+.shop-main .shop-top{padding-top:48px;padding-bottom:32px}
+.shop-main .shop-top h1{font-size:clamp(2.6rem,5vw,4.2rem)}
+.shop-main .shop-layout{max-width:1380px;padding-left:5vw;padding-right:5vw;gap:24px}
+.catalog-tools{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.catalog-filters{display:flex;gap:8px;flex-wrap:wrap}.catalog-filters[hidden]{display:none}
+.catalog-filters button{border:1px solid #b7beb4;border-radius:24px;padding:12px 20px;background:transparent;color:var(--green2);font:500 1rem Manrope;cursor:pointer}
+.catalog-filters button[aria-pressed="true"]{background:var(--green2);color:white;border-color:var(--green2)}
+.catalog-filters button:focus-visible,.product-details summary:focus-visible{outline:2px solid var(--green2);outline-offset:4px}
+.catalog-count{font-size:.875rem;color:#42534d;margin:0}
+.shop-main .shop-products{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.shop-main .shop-card{border:1px solid #dfded5;border-radius:14px;overflow:hidden;min-width:0}
+.shop-card[hidden]{display:none!important}
+.shop-main .shop-card figure{aspect-ratio:1;background:#f5f2eb}
+.shop-main .shop-card img{object-fit:contain;transition:transform .25s ease}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.shop-main .shop-card figure:hover img{transform:scale(1.04)}}
+.shop-main .shop-card>div{padding:24px;display:flex;flex-direction:column;flex:1}
+.shop-main .product-size{align-self:flex-start;font-size:.875rem;letter-spacing:.04em;color:#6b5125;border-color:#b7a17b}
+.shop-main .shop-card h3{font-size:2rem;line-height:1.15}
+.shop-main .shop-card p{font-size:1rem}
+.shop-main .shop-card .price{margin:24px 0 0}.shop-main .price strong{font:600 1.8rem Manrope}
+.shop-main .shop-card .unit-price{font-size:.875rem;margin:2px 0 18px;color:#58675e}
+.shop-main .buy-row{margin-top:auto;display:grid;grid-template-columns:1fr;gap:12px}
+.shop-main .qty{width:max-content;min-height:44px}.shop-main .add-btn{width:100%;padding:15px 12px;font-size:.875rem;letter-spacing:0}
+.product-details{border-top:1px solid #deddd4;margin-top:22px;padding-top:16px;font-size:.875rem}
+.product-details summary{cursor:pointer;font-size:1rem;font-weight:600;color:var(--green2);padding:5px 0}
+.product-details dl{margin:16px 0 0;line-height:1.7}.product-details dt{font-weight:600}.product-details dd{margin:0 0 12px;color:#42534d}
+@media(max-width:760px){.shop-main .shop-products{grid-template-columns:1fr}.shop-main .shop-layout{padding:0 22px 40px}.shop-main .shop-top{padding:34px 22px 28px}.shop-main .shop-card figure{aspect-ratio:4/3}.catalog-filters button{padding:11px 15px}.shop-main .shop-card>div{padding:22px}}
+</style></head>
 <body><a class="skip-link" href="#main-content" data-fi="Siirry sisältöön" data-en="Skip to content">Siirry sisältöön</a>
 <header class="nav">
 <a class="brand" href="index.html" aria-label="APINORDIC"><img src="assets/apinordic_logo.png" alt="APINORDIC" width="1363" height="1154"></a>
@@ -43,46 +71,46 @@
 <p data-fi="Tutustu pakkauksiin ja kokoa tuotetiedustelu. Esikatselussa ei tehdä ostoksia eikä makseta mitään." data-en="Explore the packaging and prepare a product enquiry. No purchases or payments are made in this preview.">Tutustu pakkauksiin ja kokoa tuotetiedustelu. Esikatselussa ei tehdä ostoksia eikä makseta mitään.</p>
 </section>
 <section class="shop-layout">
-<div class="shop-products">
-<p class="catalog-note" data-fi="Tuotekuvat ja hinnat ovat esimerkkejä." data-en="Product images and prices are illustrative.">Tuotekuvat ja hinnat ovat esimerkkejä.</p>
-<article class="product shop-card" id="hunaja-250" data-id="250">
+<div class="catalog-tools"><div class="catalog-filters" role="group" aria-label="Tuoteryhmät" data-aria-fi="Tuoteryhmät" data-aria-en="Product categories" hidden><button type="button" data-filter="all" aria-pressed="true" aria-controls="product-list" data-fi="Kaikki" data-en="All">Kaikki</button><button type="button" data-filter="honey" aria-pressed="false" aria-controls="product-list" data-fi="Hunajat" data-en="Honey">Hunajat</button><button type="button" data-filter="gift" aria-pressed="false" aria-controls="product-list" data-fi="Lahjapakkaukset" data-en="Gift sets">Lahjapakkaukset</button></div><p class="catalog-count" role="status" aria-live="polite"></p></div><div class="shop-products" id="product-list">
+
+<article class="product shop-card" id="hunaja-250" data-id="250" data-category="honey">
 <figure><img src="assets/honey-bottle.webp" alt="APINORDIC-hunajaa 250 gramman puristuspullossa" loading="lazy"></figure>
 <div>
 <span class="product-size">250 g</span>
 <h3 data-fi="Hunaja, puristuspullo" data-en="Honey, squeeze bottle">Hunaja, puristuspullo</h3>
 <p data-fi="Kätevä pullo arkeen: hunaja annostellaan helposti teehen, puuroon tai leivälle." data-en="A handy bottle for everyday use: easy to drizzle on tea, porridge or bread.">Kätevä pullo arkeen: hunaja annostellaan helposti teehen, puuroon tai leivälle.</p>
 <p class="price"><strong data-price>4,90 €</strong> <small data-fi="/ kpl" data-en="/ pc">/ kpl</small></p>
-<div class="buy-row">
+<p class="unit-price">19,60 €/kg</p><div class="buy-row">
 <div class="qty" role="group" aria-label="Määrä" data-aria-fi="Määrä" data-aria-en="Quantity"><button type="button" data-qty="-1" aria-label="-">−</button><input type="number" min="1" max="20" value="1" aria-label="Määrä" data-aria-fi="Määrä" data-aria-en="Quantity" data-qty-input><button type="button" data-qty="1" aria-label="+">+</button></div>
-<button type="button" class="button add-btn" data-add data-fi="Lisää koriin" data-en="Add to basket">Lisää koriin</button>
+<button type="button" class="button add-btn" data-add data-fi="Lisää ostoskoriin" data-en="Add to basket">Lisää ostoskoriin</button>
 </div>
-</div>
+<details class="product-details"><summary  data-fi="Tuotetiedot" data-en="Product details">Tuotetiedot</summary><dl><dt  data-fi="Sisältö" data-en="Contents">Sisältö</dt><dd  data-fi="100 % hunajaa" data-en="100% honey">100 % hunajaa</dd><dt  data-fi="Alkuperämaa" data-en="Country of origin">Alkuperämaa</dt><dd  data-fi="Suomi" data-en="Finland">Suomi</dd><dt  data-fi="Nettopaino" data-en="Net weight">Nettopaino</dt><dd  data-fi="250 g" data-en="250 g">250 g</dd><dt  data-fi="Säilytys" data-en="Storage">Säilytys</dt><dd  data-fi="Säilytä kuivassa, huoneenlämmössä ja suojassa auringonvalolta." data-en="Store in a dry place at room temperature, away from direct sunlight.">Säilytä kuivassa, huoneenlämmössä ja suojassa auringonvalolta.</dd></dl></details></div>
 </article>
-<article class="product shop-card" id="hunaja-500" data-id="500">
+<article class="product shop-card" id="hunaja-500" data-id="500" data-category="honey">
 <figure><img src="assets/honey-jar.webp" alt="APINORDIC-hunajaa 500 gramman lasipurkissa" loading="lazy"></figure>
 <div>
 <span class="product-size">500 g</span>
 <h3 data-fi="Hunaja, lasipurkki" data-en="Honey, glass jar">Hunaja, lasipurkki</h3>
 <p data-fi="Perheen koko: lasipurkki, johon hunaja pakataan huolella. Sopii myös lahjaksi." data-en="The family size: a glass jar, carefully packed. Also lovely as a gift.">Perheen koko: lasipurkki, johon hunaja pakataan huolella. Sopii myös lahjaksi.</p>
 <p class="price"><strong data-price>8,90 €</strong> <small data-fi="/ kpl" data-en="/ pc">/ kpl</small></p>
-<div class="buy-row">
+<p class="unit-price">17,80 €/kg</p><div class="buy-row">
 <div class="qty" role="group" aria-label="Määrä" data-aria-fi="Määrä" data-aria-en="Quantity"><button type="button" data-qty="-1" aria-label="-">−</button><input type="number" min="1" max="20" value="1" aria-label="Määrä" data-aria-fi="Määrä" data-aria-en="Quantity" data-qty-input><button type="button" data-qty="1" aria-label="+">+</button></div>
-<button type="button" class="button add-btn" data-add data-fi="Lisää koriin" data-en="Add to basket">Lisää koriin</button>
+<button type="button" class="button add-btn" data-add data-fi="Lisää ostoskoriin" data-en="Add to basket">Lisää ostoskoriin</button>
 </div>
-</div>
+<details class="product-details"><summary  data-fi="Tuotetiedot" data-en="Product details">Tuotetiedot</summary><dl><dt  data-fi="Sisältö" data-en="Contents">Sisältö</dt><dd  data-fi="100 % hunajaa" data-en="100% honey">100 % hunajaa</dd><dt  data-fi="Alkuperämaa" data-en="Country of origin">Alkuperämaa</dt><dd  data-fi="Suomi" data-en="Finland">Suomi</dd><dt  data-fi="Nettopaino" data-en="Net weight">Nettopaino</dt><dd  data-fi="500 g" data-en="500 g">500 g</dd><dt  data-fi="Säilytys" data-en="Storage">Säilytys</dt><dd  data-fi="Säilytä kuivassa, huoneenlämmössä ja suojassa auringonvalolta." data-en="Store in a dry place at room temperature, away from direct sunlight.">Säilytä kuivassa, huoneenlämmössä ja suojassa auringonvalolta.</dd></dl></details></div>
 </article>
-<article class="product shop-card" id="hunaja-duo" data-id="duo">
+<article class="product shop-card" id="hunaja-duo" data-id="duo" data-category="gift">
 <figure><img src="assets/honey-duo.webp" alt="Kaksi hunajapurkkia lahjapakkauksessa" loading="lazy"></figure>
 <div>
 <span class="product-size">2 × 500 g</span>
 <h3 data-fi="Hunajalahja" data-en="Honey gift set">Hunajalahja</h3>
 <p data-fi="Kaksi lasipurkkia hunajaa yhteisessä lahjapakkauksessa." data-en="Two glass jars of honey in a gift pack.">Kaksi lasipurkkia hunajaa yhteisessä lahjapakkauksessa.</p>
 <p class="price"><strong data-price>15,90 €</strong> <small data-fi="/ kpl" data-en="/ pc">/ kpl</small></p>
-<div class="buy-row">
+<p class="unit-price">15,90 €/kg</p><div class="buy-row">
 <div class="qty" role="group" aria-label="Määrä" data-aria-fi="Määrä" data-aria-en="Quantity"><button type="button" data-qty="-1" aria-label="-">−</button><input type="number" min="1" max="20" value="1" aria-label="Määrä" data-aria-fi="Määrä" data-aria-en="Quantity" data-qty-input><button type="button" data-qty="1" aria-label="+">+</button></div>
-<button type="button" class="button add-btn" data-add data-fi="Lisää koriin" data-en="Add to basket">Lisää koriin</button>
+<button type="button" class="button add-btn" data-add data-fi="Lisää ostoskoriin" data-en="Add to basket">Lisää ostoskoriin</button>
 </div>
-</div>
+<details class="product-details"><summary  data-fi="Tuotetiedot" data-en="Product details">Tuotetiedot</summary><dl><dt  data-fi="Sisältö" data-en="Contents">Sisältö</dt><dd  data-fi="100 % hunajaa" data-en="100% honey">100 % hunajaa</dd><dt  data-fi="Alkuperämaa" data-en="Country of origin">Alkuperämaa</dt><dd  data-fi="Suomi" data-en="Finland">Suomi</dd><dt  data-fi="Nettopaino" data-en="Net weight">Nettopaino</dt><dd  data-fi="2 × 500 g" data-en="2 × 500 g">2 × 500 g</dd><dt  data-fi="Säilytys" data-en="Storage">Säilytys</dt><dd  data-fi="Säilytä kuivassa, huoneenlämmössä ja suojassa auringonvalolta." data-en="Store in a dry place at room temperature, away from direct sunlight.">Säilytä kuivassa, huoneenlämmössä ja suojassa auringonvalolta.</dd></dl></details></div>
 </article>
 </div>
 
@@ -98,6 +126,6 @@
 <div class="social-links"><a href="https://www.instagram.com/apinordic/" target="_blank" rel="noopener noreferrer" aria-label="APINORDIC Instagram">Instagram</a></div>
 <div class="footer-links"><a href="tietosuoja.html" data-fi="Tietosuoja" data-en="Privacy">Tietosuoja</a><a href="tilauspyynnon-ehdot.html" data-fi="Tiedustelun ehdot" data-en="Enquiry terms">Tiedustelun ehdot</a></div></footer>
 <script src="script.js?v=prices-20261127"></script>
-<script src="shop.js"></script>
+<script src="shop.js?v=catalog-20261127"></script>
 </body>
 </html>
