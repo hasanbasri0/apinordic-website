@@ -38,10 +38,12 @@
     const lines = Object.entries(C.items()).map(([id, qty]) => C.products[id][C.language()] + ': ' + qty + ' × ' + C.money(C.products[id].price));
     const body = [
       C.text('Hei APINORDIC! Haluaisin tiedustella seuraavia tuotteita:', 'Hello APINORDIC! I would like to enquire about these products:'),
-      ...lines, '', C.text('Tuotteiden esimerkkihinta yhteensä: ', 'Illustrative product subtotal: ') + C.money(C.total()),
+      C.text('Tuotteet ovat loppu. Tiedustelen seuraavaa erää; tämä ei ole varaus.', 'Products are sold out. I am enquiring about the next batch; this is not a reservation.'),
+      C.text('Toimitustoive: ', 'Delivery preference: ') + (get('delivery') === 'pickup' ? C.text('Nouto Turussa 0 €', 'Collection in Turku, free') : C.text('Posti, hinta vahvistetaan', 'Posti, price to be confirmed')),
+      ...lines, '', C.text('Tuotteet yhteensä (ilman toimituskuluja): ', 'Product subtotal (excluding delivery): ') + C.money(C.total()),
       C.text('Pyydän vahvistamaan saatavuuden, lopullisen hinnan veroineen, toimituskulut, toimitusajan ja maksutavan.', 'Please confirm availability, the final price including applicable taxes, delivery costs, delivery time and payment method.'),
       '', get('firstName') + ' ' + get('lastName'), get('email'), get('message'), '',
-      C.text('Olen lukenut tilauspyynnön ehdot (25.11.2026). Tämä on sitoumukseton tiedustelu.', 'I have read the request terms (25 November 2026). This is a non-binding enquiry.')
+      C.text('Olen lukenut tilauspyynnön ehdot (27.11.2026). Tämä on sitoumukseton tiedustelu.', 'I have read the request terms (27 November 2026). This is a non-binding enquiry.')
     ].join('\n');
     $('#request-text').value = body;
     $('#request-output').hidden = false;

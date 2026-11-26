@@ -88,9 +88,9 @@
 
 (() => {
   const products = {
-    '250': { price: 4.90, image: 'assets/honey-bottle.webp', fi: 'Hunaja 250 g, puristuspullo', en: 'Honey 250 g, squeeze bottle' },
-    '500': { price: 8.90, image: 'assets/honey-jar.webp', fi: 'Hunaja 500 g, lasipurkki', en: 'Honey 500 g, glass jar' },
-    'duo': { price: 15.90, image: 'assets/honey-duo.webp', fi: 'Hunajalahja 2 × 500 g', en: 'Honey gift set 2 × 500 g' }
+    '250': { price: 4.90, inStock: false, image: 'assets/honey-bottle.webp', fi: 'Hunaja 250 g, puristuspullo', en: 'Honey 250 g, squeeze bottle' },
+    '500': { price: 8.90, inStock: false, image: 'assets/honey-jar.webp', fi: 'Hunaja 500 g, lasipurkki', en: 'Honey 500 g, glass jar' },
+    'duo': { price: 15.90, inStock: false, image: 'assets/honey-duo.webp', fi: 'Hunajalahja 2 × 500 g', en: 'Honey gift set 2 × 500 g' }
   };
   const key = 'apinordic-cart';
   const language = () => document.documentElement.lang === 'en' ? 'en' : 'fi';

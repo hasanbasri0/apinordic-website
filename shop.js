@@ -49,7 +49,7 @@
       const view = element('button', C.text('Näytä kori', 'View basket'));
       view.type = 'button';
       view.addEventListener('click', C.open);
-      feedback.replaceChildren(element('span', C.text('Ostoskori päivitetty', 'Basket updated')), view);
+      feedback.replaceChildren(element('span', C.text('Tuote lisätty tilauspyyntöön', 'Product added to request')), view);
       feedback.classList.add('show');
       clearTimeout(feedbackTimer);
       feedbackTimer = setTimeout(() => feedback.classList.remove('show'), 4000);
