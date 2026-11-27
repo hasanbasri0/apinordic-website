@@ -42,6 +42,17 @@
 .nature-sources{padding:27px 0 0;font-size:11px;color:#626b60}.nature-sources p{margin:0 0 8px}.nature-sources a{display:inline-block;color:inherit;margin:0 24px 8px 0;text-underline-offset:3px}
 @media(max-width:900px){.nature-intro{gap:30px}.nature-intro img{height:390px}.nature-seasons{grid-template-columns:1fr 1fr}.nature-season:nth-child(2){border-right:0}.nature-season:nth-child(-n+2){border-bottom:1px solid #d9ddce}.nature-pollinators{gap:30px}}
 @media(max-width:600px){.nature-page{padding:32px 22px}.nature-intro{grid-template-columns:1fr;gap:28px;padding-bottom:40px}.nature-intro img{height:270px;border-top-left-radius:65px}.nature-pollinators{grid-template-columns:1fr;gap:6px;padding:38px 0}.nature-year,.nature-help{padding:38px 0}.nature-tips{grid-template-columns:1fr;gap:20px}.nature-season{padding:22px 16px}.nature-season h3{font-size:25px}.nature-number{margin-bottom:20px}.nature-invitation{padding:36px 20px}}
+
+.nature-seasons{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;border:0;overflow:visible}
+.nature-season,.nature-season:nth-child(n){padding:0 0 24px;border:0;background:transparent}
+.nature-season img{display:block;width:100%;height:auto;aspect-ratio:1.79;object-fit:cover;border-radius:5px;margin-bottom:24px}
+.nature-season .eyebrow{color:#786024;font-size:14px;letter-spacing:.12em}
+.nature-season h3{font-size:34px}
+.nature-season p:last-child,.nature-tips p,.nature-pollinators p{font-size:16px}
+.nature-page .eyebrow{font-size:14px}.nature-link,.nature-cta{font-size:14px}
+.nature-intro figcaption,.nature-sources{font-size:12px}
+.nature-intro img{object-position:35% center}
+@media(max-width:600px){.nature-seasons{grid-template-columns:1fr;gap:16px}.nature-season img{margin-bottom:20px}.nature-season h3{font-size:32px}.nature-intro img{height:auto;aspect-ratio:1.45}.nature-intro figcaption{font-size:12px}}
 </style>
 </head>
 <body><a class="skip-link" href="#main-content" data-fi="Siirry sisältöön" data-en="Skip to content">Siirry sisältöön</a>
@@ -68,18 +79,18 @@
 <p class="eyebrow" data-fi="MEHILÄISET &amp; LUONTO" data-en="BEES &amp; NATURE">MEHILÄISET &amp; LUONTO</p>
 <h1 id="nature-title" data-fi="Pieni mehiläinen, suuri maailma." data-en="A small bee. A world of wonder.">Pieni mehiläinen,<br>suuri maailma.</h1>
 <p class="nature-lead" data-fi="Hunajan tarina alkaa kukasta. Sen taustalla on mehiläisten yhteinen työ ja luonnon rytmi, joka muuttuu vuodenajan mukana." data-en="The story of honey starts with a flower. Behind it lies the shared work of bees and the changing rhythm of the seasons.">Hunajan tarina alkaa kukasta. Sen taustalla on mehiläisten yhteinen työ ja luonnon rytmi, joka muuttuu vuodenajan mukana.</p>
-<a class="nature-link" href="#mehilaisvuosi" data-fi="Tutustu mehiläisten vuoteen ↓" data-en="Explore the bees’ year ↓">Tutustu mehiläisten vuoteen ↓</a></div>
-<figure><img src="assets/mehilaispesat-2027.webp" alt="Vihreitä mehiläispesiä kesäisessä metsämaisemassa" width="1600" height="900" fetchpriority="high">
-<figcaption data-fi="Tekoälyllä luotu havainnekuva – ei kuva omalta tarhaltamme." data-en="AI-generated illustration, not a photograph of our apiary.">Tekoälyllä luotu havainnekuva – ei kuva omalta tarhaltamme.</figcaption></figure>
+<a class="nature-link" href="#mehilaisvuosi" data-fi="Tutustu mehiläisten vuoteen" data-en="Explore the bees’ year">Tutustu mehiläisten vuoteen</a></div>
+<figure><img src="assets/luonto-mehilainen.webp" alt="Mehiläinen apilan kukalla – tekoälyllä luotu havainnekuva" data-alt-fi="Mehiläinen apilan kukalla – tekoälyllä luotu havainnekuva" data-alt-en="Bee on a clover flower – AI-generated illustration" width="1400" height="781" fetchpriority="high">
+<figcaption data-fi="Sivun kuvat ovat tekoälyllä luotuja havainnekuvia, eivät kuvia omalta tarhaltamme." data-en="The images on this page are AI-generated illustrations, not photographs of our apiary.">Sivun kuvat ovat tekoälyllä luotuja havainnekuvia, eivät kuvia omalta tarhaltamme.</figcaption></figure>
 </section>
 <section class="nature-year" id="mehilaisvuosi" aria-labelledby="year-title">
 <div class="nature-heading"><p class="eyebrow" data-fi="NELJÄ VUODENAIKAA" data-en="FOUR SEASONS">NELJÄ VUODENAIKAA</p>
 <h2 id="year-title" data-fi="Mehiläisten vuosi" data-en="The bees’ year">Mehiläisten vuosi</h2>
 <p data-fi="Pesän elämä jatkuu ympäri vuoden. Vuodenajat antavat sille tahdin." data-en="Life in the hive continues all year. The seasons set its pace.">Pesän elämä jatkuu ympäri vuoden. Vuodenajat antavat sille tahdin.</p></div>
-<div class="nature-seasons"><article class="nature-season"><span class="nature-number" aria-hidden="true">01</span><p class="eyebrow" data-fi="Kevät" data-en="Spring">Kevät</p><h3 data-fi="Uusi kausi herää" data-en="A new season awakens">Uusi kausi herää</h3><p data-fi="Valon ja lämmön lisääntyessä pesän elämä vilkastuu. Ensimmäiset kukat tarjoavat ravintoa kasvavalle yhdyskunnalle." data-en="As light and warmth return, life in the hive gathers pace. The first flowers provide food for the growing colony.">Valon ja lämmön lisääntyessä pesän elämä vilkastuu. Ensimmäiset kukat tarjoavat ravintoa kasvavalle yhdyskunnalle.</p></article>
-<article class="nature-season"><span class="nature-number" aria-hidden="true">02</span><p class="eyebrow" data-fi="Kesä" data-en="Summer">Kesä</p><h3 data-fi="Kukkien ja lentojen aika" data-en="A season of flowers and flight">Kukkien ja lentojen aika</h3><p data-fi="Mehiläiset keräävät mettä ja siitepölyä. Kukinta ja sää vaikuttavat lentopäiviin sekä siihen, millaiseksi hunajasato muodostuu." data-en="Bees collect nectar and pollen. Flowers and weather shape their foraging days and the season’s honey harvest.">Mehiläiset keräävät mettä ja siitepölyä. Kukinta ja sää vaikuttavat lentopäiviin sekä siihen, millaiseksi hunajasato muodostuu.</p></article>
-<article class="nature-season"><span class="nature-number" aria-hidden="true">03</span><p class="eyebrow" data-fi="Syksy" data-en="Autumn">Syksy</p><h3 data-fi="Katse kohti talvea" data-en="Preparing for winter">Katse kohti talvea</h3><p data-fi="Kukinnan vähentyessä yhdyskunta valmistautuu talveen. Mehiläishoitaja huolehtii talviravinnosta ja seuraa yhdyskunnan kuntoa." data-en="As flowering fades, the colony prepares for winter. The beekeeper attends to winter food stores and monitors the colony’s condition.">Kukinnan vähentyessä yhdyskunta valmistautuu talveen. Mehiläishoitaja huolehtii talviravinnosta ja seuraa yhdyskunnan kuntoa.</p></article>
-<article class="nature-season"><span class="nature-number" aria-hidden="true">04</span><p class="eyebrow" data-fi="Talvi" data-en="Winter">Talvi</p><h3 data-fi="Elämää hiljaisuuden keskellä" data-en="Life beneath the quiet">Elämää hiljaisuuden keskellä</h3><p data-fi="Mehiläiset eivät nuku talviunta. Ne kokoontuvat talvipalloon, ylläpitävät lämpöä ja käyttävät ravintovarastojaan kevääseen asti." data-en="Honey bees do not hibernate. They cluster together, maintain warmth and use their food stores until spring.">Mehiläiset eivät nuku talviunta. Ne kokoontuvat talvipalloon, ylläpitävät lämpöä ja käyttävät ravintovarastojaan kevääseen asti.</p></article></div></section>
+<div class="nature-seasons"><article class="nature-season"><img src="assets/luonto-kevat.webp" alt="Mehiläispesiä keväällä – havainnekuva" data-alt-fi="Mehiläispesiä keväällä – havainnekuva" data-alt-en="Beehives in spring – illustration" width="1400" height="781" loading="lazy" decoding="async"><p class="eyebrow" data-fi="Kevät" data-en="Spring">Kevät</p><h3 data-fi="Uusi kausi herää" data-en="A new season awakens">Uusi kausi herää</h3><p data-fi="Valon ja lämmön lisääntyessä pesän elämä vilkastuu. Ensimmäiset kukat tarjoavat ravintoa kasvavalle yhdyskunnalle." data-en="As light and warmth return, life in the hive gathers pace. The first flowers provide food for the growing colony.">Valon ja lämmön lisääntyessä pesän elämä vilkastuu. Ensimmäiset kukat tarjoavat ravintoa kasvavalle yhdyskunnalle.</p></article>
+<article class="nature-season"><img src="assets/luonto-kesa.webp" alt="Mehiläispesiä kesällä – havainnekuva" data-alt-fi="Mehiläispesiä kesällä – havainnekuva" data-alt-en="Beehives in summer – illustration" width="1400" height="781" loading="lazy" decoding="async"><p class="eyebrow" data-fi="Kesä" data-en="Summer">Kesä</p><h3 data-fi="Kukkien ja lentojen aika" data-en="A season of flowers and flight">Kukkien ja lentojen aika</h3><p data-fi="Mehiläiset keräävät mettä ja siitepölyä. Kukinta ja sää vaikuttavat lentopäiviin sekä siihen, millaiseksi hunajasato muodostuu." data-en="Bees collect nectar and pollen. Flowers and weather shape their foraging days and the season’s honey harvest.">Mehiläiset keräävät mettä ja siitepölyä. Kukinta ja sää vaikuttavat lentopäiviin sekä siihen, millaiseksi hunajasato muodostuu.</p></article>
+<article class="nature-season"><img src="assets/luonto-syksy.webp" alt="Mehiläispesiä syksyllä – havainnekuva" data-alt-fi="Mehiläispesiä syksyllä – havainnekuva" data-alt-en="Beehives in autumn – illustration" width="1400" height="781" loading="lazy" decoding="async"><p class="eyebrow" data-fi="Syksy" data-en="Autumn">Syksy</p><h3 data-fi="Katse kohti talvea" data-en="Preparing for winter">Katse kohti talvea</h3><p data-fi="Kukinnan vähentyessä yhdyskunta valmistautuu talveen. Mehiläishoitaja huolehtii talviravinnosta ja seuraa yhdyskunnan kuntoa." data-en="As flowering fades, the colony prepares for winter. The beekeeper attends to winter food stores and monitors the colony’s condition.">Kukinnan vähentyessä yhdyskunta valmistautuu talveen. Mehiläishoitaja huolehtii talviravinnosta ja seuraa yhdyskunnan kuntoa.</p></article>
+<article class="nature-season"><img src="assets/luonto-talvi.webp" alt="Mehiläispesiä talvella – havainnekuva" data-alt-fi="Mehiläispesiä talvella – havainnekuva" data-alt-en="Beehives in winter – illustration" width="1400" height="781" loading="lazy" decoding="async"><p class="eyebrow" data-fi="Talvi" data-en="Winter">Talvi</p><h3 data-fi="Elämää hiljaisuuden keskellä" data-en="Life beneath the quiet">Elämää hiljaisuuden keskellä</h3><p data-fi="Mehiläiset eivät nuku talviunta. Ne kokoontuvat talvipalloon, ylläpitävät lämpöä ja käyttävät ravintovarastojaan kevääseen asti." data-en="Honey bees do not hibernate. They cluster together, maintain warmth and use their food stores until spring.">Mehiläiset eivät nuku talviunta. Ne kokoontuvat talvipalloon, ylläpitävät lämpöä ja käyttävät ravintovarastojaan kevääseen asti.</p></article></div></section>
 <section class="nature-pollinators" aria-labelledby="pollinator-title">
 <div><p class="eyebrow" data-fi="KUKASTA KUKKAAN" data-en="FROM FLOWER TO FLOWER">KUKASTA KUKKAAN</p>
 <h2 id="pollinator-title" data-fi="Luonto tarvitsee monenlaisia pölyttäjiä." data-en="Nature needs many kinds of pollinators.">Luonto tarvitsee monenlaisia pölyttäjiä.</h2></div>
@@ -96,7 +107,7 @@
 <aside class="nature-invitation"><p class="eyebrow" data-fi="LÄHEMMÄS PESÄN ELÄMÄÄ" data-en="CLOSER TO LIFE IN THE HIVE">LÄHEMMÄS PESÄN ELÄMÄÄ</p>
 <h2 data-fi="Uteliaisuudesta yhteyteen." data-en="Let curiosity bring you closer.">Uteliaisuudesta yhteyteen.</h2>
 <p data-fi="Kummipesä tarjoaa tavan seurata mehiläisten vuodenkiertoa ja tutustua niiden maailmaan." data-en="Hive sponsorship offers a way to follow the bees through the seasons and discover their world.">Kummipesä tarjoaa tavan seurata mehiläisten vuodenkiertoa ja tutustua niiden maailmaan.</p>
-<a class="nature-cta" href="pesaosakkuus.html" data-fi="Tutustu kummipesään →" data-en="Discover hive sponsorship →">Tutustu kummipesään →</a>
+<a class="nature-cta" href="pesaosakkuus.html" data-fi="Tutustu kummipesään" data-en="Discover hive sponsorship">Tutustu kummipesään</a>
 </aside>
 <div class="nature-sources"><p data-fi="Lisälukemista" data-en="Further reading">Lisälukemista</p>
 <a href="https://www.sll.fi/opi-lisaa/polyttajat/puolusta-polyttajia/auta-polyttajia-pihallasi/">Suomen luonnonsuojeluliitto: Auta pölyttäjiä pihallasi</a>
@@ -107,5 +118,11 @@
 <div class="social-links"><a href="https://www.instagram.com/apinordic/" target="_blank" rel="noopener noreferrer" aria-label="APINORDIC Instagram">Instagram</a></div>
 <div class="footer-links"><a href="tietosuoja.html" data-fi="Tietosuoja" data-en="Privacy">Tietosuoja</a><a href="tilauspyynnon-ehdot.html" data-fi="Tiedustelun ehdot" data-en="Enquiry terms">Tiedustelun ehdot</a></div></footer>
 <script src="script.js?v=stock-sync-20261127"></script>
+<script>
+(function(){
+ function translateAlt(){var lang=document.documentElement.lang==='en'?'en':'fi';document.querySelectorAll('[data-alt-fi]').forEach(function(img){img.alt=img.getAttribute('data-alt-'+lang);});}
+ new MutationObserver(translateAlt).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});translateAlt();
+})();
+</script>
 </body>
 </html>
