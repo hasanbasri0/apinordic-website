@@ -38,7 +38,7 @@
     const lines = Object.entries(C.items()).map(([id, qty]) => C.products[id][C.language()] + ': ' + qty + ' × ' + C.money(C.products[id].price));
     const body = [
       C.text('Hei APINORDIC! Haluaisin tiedustella seuraavia tuotteita:', 'Hello APINORDIC! I would like to enquire about these products:'),
-      C.text('Tuotteet ovat loppu. Tiedustelen seuraavaa erää; tämä ei ole varaus.', 'Products are sold out. I am enquiring about the next batch; this is not a reservation.'),
+      C.text('Tämä on sitoumukseton tilauspyyntö. Pyydän vahvistamaan tuotteiden saatavuuden.', 'This is a non-binding order request. Please confirm product availability.'),
       C.text('Toimitustoive: ', 'Delivery preference: ') + (get('delivery') === 'pickup' ? C.text('Nouto Turussa 0 €', 'Collection in Turku, free') : C.text('Posti, hinta vahvistetaan', 'Posti, price to be confirmed')),
       ...lines, '', C.text('Tuotteet yhteensä (ilman toimituskuluja): ', 'Product subtotal (excluding delivery): ') + C.money(C.total()),
       C.text('Pyydän vahvistamaan saatavuuden, lopullisen hinnan veroineen, toimituskulut, toimitusajan ja maksutavan.', 'Please confirm availability, the final price including applicable taxes, delivery costs, delivery time and payment method.'),

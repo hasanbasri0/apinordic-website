@@ -92,6 +92,42 @@
     '500': { price: 8.90, inStock: false, image: 'assets/honey-jar.webp', fi: 'Hunaja 500 g, lasipurkki', en: 'Honey 500 g, glass jar' },
     'duo': { price: 15.90, inStock: false, image: 'assets/honey-duo.webp', fi: 'Hunajalahja 2 × 500 g', en: 'Honey gift set 2 × 500 g' }
   };
+
+  // Change only products[id].inStock above: true = available, false = sold out.
+  const stockState = () => {
+    const available = Object.values(products).filter(product => product.inStock !== false).length;
+    return available === 0 ? 'none' : available === Object.keys(products).length ? 'all' : 'some';
+  };
+  function updateStockCopy() {
+    const state = stockState();
+    const messages = {
+      none: [
+        'Hunaja on tällä hetkellä loppu. Kysy seuraavasta erästä yhteydenottolomakkeella. Ajankohta vahvistetaan erikseen.',
+        'All honey is currently sold out. Use the contact form to enquire about the next batch. Timing will be confirmed separately.'
+      ],
+      some: [
+        'Osa hunajatuotteista on saatavilla. Lisää saatavilla olevat tuotteet tilauspyyntöön. Loppuneista tuotteista voit kysyä seuraavaa erää.',
+        'Some honey products are available. Add available products to your request. For sold-out products, enquire about the next batch.'
+      ],
+      all: [
+        'Kaikki hunajatuotteemme ovat saatavilla. Valitse tuotteet ja lähetä sitoumukseton tilauspyyntö.',
+        'All honey products are available. Choose your products and send a non-binding order request.'
+      ]
+    };
+    const tails = {
+      notice: [' Tilauspyyntö ei ole varaus. Maksamisesta sovitaan erikseen.', ' A request is not a reservation. Payment is agreed separately.'],
+      intro: ['', ''],
+      terms: [' Vahvistamme saatavuuden ja toimitusajan ennen kauppaa. Tilauspyyntö ei ole varaus.', ' We confirm availability and delivery before purchase. A request is not a reservation.'],
+      contact: [' Nouto Turussa on maksuton ja sovitaan erikseen.', ' Collection in Turku is free and by appointment.']
+    };
+    document.querySelectorAll('[data-stock-copy]').forEach(node => {
+      const tail = tails[node.dataset.stockCopy] || ['', ''];
+      node.dataset.fi = messages[state][0] + tail[0];
+      node.dataset.en = messages[state][1] + tail[1];
+      node.textContent = text(node.dataset.fi, node.dataset.en);
+    });
+  }
+
   const key = 'apinordic-cart';
   const language = () => document.documentElement.lang === 'en' ? 'en' : 'fi';
   const text = (fi, en) => language() === 'fi' ? fi : en;
@@ -125,7 +161,7 @@
     const count = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
     document.querySelectorAll('.cart-count').forEach(el => { el.textContent = count; el.hidden = count === 0; });
   }
-  window.ApinordicCart = { products, language, text, money, total, set, open, items: () => ({ ...cart }) };
+  window.ApinordicCart = { stockState, products, language, text, money, total, set, open, items: () => ({ ...cart }) };
   window.addEventListener('apinordic-cart', updateCartCount);
   window.addEventListener('storage', event => {
     if (event.key === key || event.key === null) {
@@ -135,4 +171,7 @@
   });
   new MutationObserver(updateCartCount).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   updateCartCount();
+  updateStockCopy();
+  window.addEventListener('apinordic-cart', updateStockCopy);
+  new MutationObserver(updateStockCopy).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 })();
