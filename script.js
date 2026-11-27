@@ -102,7 +102,7 @@
       const result = {};
       for (const id of Object.keys(products)) {
         const count = Number(saved?.[id]);
-        if (Number.isFinite(count) && count >= 1) result[id] = Math.min(50, Math.floor(count));
+        if (products[id].inStock !== false && Number.isFinite(count) && count >= 1) result[id] = Math.min(50, Math.floor(count));
       }
       return result;
     } catch { return {}; }
@@ -112,7 +112,7 @@
     if (!Object.hasOwn(products, id)) return;
     const count = Number(quantity);
     if (!Number.isFinite(count)) return;
-    if (count < 1) delete cart[id];
+    if (count < 1 || products[id].inStock === false) delete cart[id];
     else cart[id] = Math.min(50, Math.floor(count));
     try { localStorage.setItem(key, JSON.stringify(cart)); } catch {}
     window.dispatchEvent(new Event('apinordic-cart'));

@@ -28,7 +28,18 @@
   function render() {
     filterProducts();
     document.querySelectorAll('.shop-card').forEach(card => {
-      card.querySelector('[data-price]').textContent = C.money(C.products[card.dataset.id].price);
+      const product = C.products[card.dataset.id];
+      const soldOut = product.inStock === false;
+      card.querySelector('[data-price]').textContent = C.money(product.price);
+      const button = card.querySelector('[data-add]');
+      button.disabled = soldOut;
+      button.dataset.fi = soldOut ? 'Loppuunmyyty' : 'Lisää tilauspyyntöön';
+      button.dataset.en = soldOut ? 'Sold out' : 'Add to request';
+      button.textContent = C.text(button.dataset.fi, button.dataset.en);
+      card.querySelector('.qty').hidden = soldOut;
+      card.querySelectorAll('.qty input, .qty button').forEach(control => { control.disabled = soldOut; });
+      card.querySelector('.stock-badge').hidden = !soldOut;
+      card.querySelector('.next-batch-note').hidden = !soldOut;
     });
   }
   if (location.hash === '#kori') location.replace('ostoskori.html');
@@ -45,6 +56,7 @@
     }));
     card.querySelector('[data-add]').addEventListener('click', () => {
       const id = card.dataset.id;
+      if (C.products[id].inStock === false) return;
       C.set(id, (C.items()[id] || 0) + quantity());
       const view = element('button', C.text('Näytä kori', 'View basket'));
       view.type = 'button';
