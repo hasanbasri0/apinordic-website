@@ -387,3 +387,18 @@ footer>div{display:flex;gap:22px}
 @media(max-width:900px){.nav nav{max-height:calc(100dvh - 72px);overflow-y:auto;gap:12px}.nav nav>a{padding:8px 0}.preview-notice{margin:16px 14px}.hero h1{font-size:clamp(38px,10vw,52px)}}
 
 .contact-form-section{max-width:760px;margin:0 auto;padding:40px 6vw 80px}.contact-form-section h2{font:500 42px "Cormorant Garamond",serif}.contact-form-section form{display:grid;gap:20px}.contact-form-section label{display:grid;gap:8px}.contact-form-section input,.contact-form-section select,.contact-form-section textarea{box-sizing:border-box;width:100%;min-width:0;padding:12px;border:1px solid #8a9b8d;border-radius:6px;background:#fffdf8;color:var(--ink);font:inherit}.contact-form-section .button{width:fit-content}.contact-form-section #contact-output{margin-top:28px}.contact-form-section :focus-visible{outline:3px solid #b87800;outline-offset:3px}
+
+/* Contact invitation and shared social icon */
+#yhteys{align-items:center;gap:40px 64px}
+#yhteys .contact-welcome{margin:24px 0 0;font-size:16px;line-height:1.7;color:var(--ink)}
+#yhteys .contact-details{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+#yhteys .contact-location{margin:0;font-size:14px;line-height:1.9;letter-spacing:.03em}
+#yhteys .contact-location span{letter-spacing:normal}
+#yhteys .contact-email{font-size:clamp(18px,2.2vw,24px);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px;overflow-wrap:anywhere}
+#yhteys .contact-message{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:10px 21px;border:1px solid #99aa9f;border-radius:999px;font-size:14px;font-weight:500;line-height:1.5;text-decoration:none;background:transparent;color:var(--ink);transition:background .2s,border-color .2s}
+#yhteys .contact-message:hover{background:#e9eee5;border-color:var(--ink)}
+#yhteys a:focus-visible,footer .instagram-icon:focus-visible{outline:3px solid #c6963b;outline-offset:5px}
+footer .social-links .instagram-icon{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #7d9587;border-radius:50%;color:#d2dcd7;transition:background .2s,color .2s}
+footer .social-links .instagram-icon:hover{background:#ffffff12;color:#e6c88f;border-color:#e6c88f}
+footer .instagram-icon svg{display:block;flex-shrink:0}
+@media(max-width:600px){#yhteys{gap:30px}#yhteys .contact-details{gap:20px}}
